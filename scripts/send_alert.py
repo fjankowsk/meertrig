@@ -13,7 +13,7 @@ import pytz
 example_identity = {
     id_keys.address:        'voevent.organization.tld',
     id_keys.stream:         'ProjectFooAlerts',
-    id_keys.shortName:      'ProjectFoo',
+    id_keys.shortName:      'MeerTRAP',
     id_keys.contactName:    'Fabian Jankowski',
     id_keys.contactEmail:   'fabian.jankowski@manchester.ac.uk'
     }
@@ -28,13 +28,14 @@ host = 'localhost'
 ra = 90.0
 dec = -45.0
 positional_error = 0.1 #degrees error radius
-event_datetime = datetime(year=2000,month=1,day=1,hour=0,minute=0,
-                          tzinfo=pytz.UTC)
+#event_datetime = datetime(year=2000,month=1,day=1,hour=0,minute=0,
+#                          tzinfo=pytz.UTC)
+event_datetime = datetime.utcnow()
 
 alert_packet = create_basic_location_alert(example_identity,
-                                           # role = vp.definitions.roles.observation,
-                                           role = vp.definitions.roles.test,
-                                           description="Y2K Bug",
+                                           #role=vp.definitions.roles.observation,
+                                           role=vp.definitions.roles.test,
+                                           description="Test Event",
                                            ra=ra,
                                            dec=dec,
                                            err=positional_error,
