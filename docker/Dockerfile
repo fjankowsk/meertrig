@@ -33,6 +33,9 @@ RUN pip3 install \
     pyyaml \
     pytz
 
+# 4piskytools
+RUN pip3 install git+https://github.com/timstaley/fourpiskytools.git@master
+
 # install our software in docker image
 ARG SOFT_PATH="/software/meertrig"
 
