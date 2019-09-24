@@ -7,8 +7,7 @@ import fourpiskytools
 from fourpiskytools.identity import id_keys
 from fourpiskytools.voevent import create_basic_location_alert
 import voeventparse as vp
-from datetime import datetime
-import pytz
+from datetime import (datetime, timezone)
 
 example_identity = {
     id_keys.address:        'voevent.organization.tld',
@@ -29,8 +28,8 @@ ra = 90.0
 dec = -45.0
 positional_error = 0.1 #degrees error radius
 #event_datetime = datetime(year=2000,month=1,day=1,hour=0,minute=0,
-#                          tzinfo=pytz.UTC)
-event_datetime = datetime.utcnow()
+#                          tzinfo=timezone.utc)
+event_datetime = datetime.now(timezone.utc)
 
 alert_packet = create_basic_location_alert(example_identity,
                                            #role=vp.definitions.roles.observation,
