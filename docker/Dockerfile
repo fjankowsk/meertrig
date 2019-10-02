@@ -6,6 +6,7 @@ LABEL description="Docker image for MeerTRAP Trigger Tools."
 
 RUN apt-get update && apt-get install -y \
     curl \
+    emacs-nox \
     gcc \
     git \
     make \
