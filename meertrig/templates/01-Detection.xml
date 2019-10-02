@@ -2,7 +2,7 @@
 <voe:VOEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:voe="http://www.ivoa.net/xml/VOEvent/v2.0" xsi:schemaLocation="http://www.ivoa.net/xml/VOEvent/v2.0 http://www.ivoa.net/xml/VOEvent/VOEvent-v2.0.xsd" version="2.0" role="observation" ivorn="ivo://[institute]/[instrument]#FRB[YYMMDDhhmm]/[MJD]"> <!-- MJD of VOEvent creation -->
     <Who>
     	<AuthorIVORN>{{ ivorn }}</AuthorIVORN>
-    	<Date>[YYYY-MM-DDThh:mm:ss]</Date> <!-- Time of event creation -->
+    	<Date>{{ voevent_creation_time }}</Date> <!-- Time of event creation -->
     	<Author><contactEmail>{{ contact_email }}</contactEmail><contactName>{{ contact_name }}</contactName></Author>
     </Who>
     <What>

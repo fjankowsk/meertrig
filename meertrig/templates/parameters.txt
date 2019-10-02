@@ -1,5 +1,6 @@
 params = {
     ivorn="ivo://[institute]/contact",
+    voevent_creation_time=utc_now_str, # [YYYY-MM-DDThh:mm:ss]
     contact_email="",
     contact_name="",
     bandwidth=856.0,
