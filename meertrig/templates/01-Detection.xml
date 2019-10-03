@@ -55,9 +55,7 @@
             <Param dataType="float" name="redshift_host" ucd="src.redshift" unit="None" value=""><Description>The redshift of the FRB host galaxy. Specify "photometry" or "spectroscopy".</Description></Param>
     	    <Param dataType="float" name="dispersion_smearing" unit="ms" value=""/>
     	    <Param dataType="float" name="scattering" ucd="time.duration;src.var.pulse;spect.line.broadening" unit="ms" value=""><Description>The scatter broadening of the pulse. NOTE: if scattering = None this means either no evidence could be found for scatter broadening or it has NOT been calculated</Description></Param>
-    	    <Param name="scattering_model" value=""/><Description>[In case "other": give DOI or discription of model used]</Description> 
-    	    -->
-    	     <!-- Scattering screen model used to measure scattering parameter. Value is any of the following options: "one-sided exponential"(standard), "Kolmogorov thin screen", "Kolmogorov uniform medium", "Kolmogorov thin-screen truncated", "Power law thin", "Power law thick", "other" -->
+    	    <Param name="scattering_model" value=""/><Description>[In case "other": give DOI or discription of model used]Scattering screen model used to measure scattering parameter. Value is any of the following options: "one-sided exponential"(standard), "Kolmogorov thin screen", "Kolmogorov uniform medium", "Kolmogorov thin-screen truncated", "Power law thin", "Power law thick", "other" </Description>-->
 	
 			<!--
     	    <Param dataType="float" name="dm_index" unit="None" value=""><Description>Dispersion measure index</Description></Param>
