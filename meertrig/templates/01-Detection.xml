@@ -78,9 +78,10 @@
     	    <Param dataType="float" name="circular_pol" ucd="phys.polarization.circular" unit="None" value=""/>
     	    <Param dataType="float" name="circular_pol_error" ucd="stat.error;phys.polarization.circular" unit="None" value=""/>
     	    <Param dataType="float" name="rm" ucd="phys.polarization.rotMeasure" unit="rad/m^2" value=""/>
-    	    <Param dataType="float" name="rm_error" ucd="stat.error;phys.polarization.rotMeasure" unit="rad/m^2" value=""/></Group>-->
+    	    <Param dataType="float" name="rm_error" ucd="stat.error;phys.polarization.rotMeasure" unit="rad/m^2" value=""/> -->
+    	 </Group>
     	    
-    </What>
+     </What>
 
     <WhereWhen>
     	<ObsDataLocation>
