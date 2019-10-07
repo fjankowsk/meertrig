@@ -1,0 +1,169 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<voe:VOEvent
+      ivorn="ivo://nasa.gsfc.gcn/Fermi#Point_Dir_2019-10-06T21:06:00.00_000000-0-355"
+      role="utility" version="2.0"
+      xmlns:voe="http://www.ivoa.net/xml/VOEvent/v2.0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.ivoa.net/xml/VOEvent/v2.0  http://www.ivoa.net/xml/VOEvent/VOEvent-v2.0.xsd" >
+  <Who>
+    <AuthorIVORN>ivo://nasa.gsfc.tan/gcn</AuthorIVORN>
+    <Author>
+      <shortName>Fermi (via VO-GCN)</shortName>
+      <contactName>Julie McEnery</contactName>
+      <contactPhone>+1-301-286-1632</contactPhone>
+      <contactEmail>Julie.E.McEnery@nasa.gov</contactEmail>
+    </Author>
+    <Date>2019-10-06T21:05:45</Date>
+    <Description>This VOEvent message was created with GCN VOE version: 1.43 29sep19</Description>
+  </Who>
+  <What>
+    <Param name="Packet_Type"   value="129" />
+    <Param name="Pkt_Ser_Num"   value="100" />
+    <Param name="Start_TJD"     value="18762" unit="days" ucd="time" />
+    <Param name="Start_SOD"     value="75960.00" unit="sec" ucd="time" />
+    <Param name="Start_RA"      value="269.3980" unit="deg" ucd="pos.eq.ra" />
+    <Param name="Start_Dec"     value="31.1819" unit="deg" ucd="pos.eq.dec" />
+    <Param name="Delta_T"       value="120" unit="sec" ucd="time" />
+    <Param name="RA_1dt"        value="274.5" unit="deg" ucd="pos.eq.ra" />
+    <Param name="Dec_1dt"       value="29.3" unit="deg" ucd="pos.eq.dec" />
+    <Param name="SAA_1dt"       value="1"  />
+    <Param name="RA_2dt"        value="279.7" unit="deg" ucd="pos.eq.ra" />
+    <Param name="Dec_2dt"       value="27.7" unit="deg" ucd="pos.eq.dec" />
+    <Param name="SAA_2dt"       value="1"  />
+    <Param name="RA_3dt"        value="284.9" unit="deg" ucd="pos.eq.ra" />
+    <Param name="Dec_3dt"       value="26.4" unit="deg" ucd="pos.eq.dec" />
+    <Param name="SAA_3dt"       value="1"  />
+    <Param name="RA_4dt"        value="290.2" unit="deg" ucd="pos.eq.ra" />
+    <Param name="Dec_4dt"       value="25.3" unit="deg" ucd="pos.eq.dec" />
+    <Param name="SAA_4dt"       value="1"  />
+    <Param name="RA_5dt"        value="295.5" unit="deg" ucd="pos.eq.ra" />
+    <Param name="Dec_5dt"       value="24.7" unit="deg" ucd="pos.eq.dec" />
+    <Param name="SAA_5dt"       value="1"  />
+    <Param name="RA_6dt"        value="300.8" unit="deg" ucd="pos.eq.ra" />
+    <Param name="Dec_6dt"       value="24.4" unit="deg" ucd="pos.eq.dec" />
+    <Param name="SAA_6dt"       value="1"  />
+    <Param name="RA_7dt"        value="306.1" unit="deg" ucd="pos.eq.ra" />
+    <Param name="Dec_7dt"       value="24.4" unit="deg" ucd="pos.eq.dec" />
+    <Param name="SAA_7dt"       value="1"  />
+    <Param name="RA_8dt"        value="311.5" unit="deg" ucd="pos.eq.ra" />
+    <Param name="Dec_8dt"       value="24.6" unit="deg" ucd="pos.eq.dec" />
+    <Param name="SAA_8dt"       value="1"  />
+    <Param name="RA_9dt"        value="316.8" unit="deg" ucd="pos.eq.ra" />
+    <Param name="Dec_9dt"       value="25.2" unit="deg" ucd="pos.eq.dec" />
+    <Param name="SAA_9dt"       value="1"  />
+    <Param name="RA_10dt"       value="322.1" unit="deg" ucd="pos.eq.ra" />
+    <Param name="Dec_10dt"      value="26.1" unit="deg" ucd="pos.eq.dec" />
+    <Param name="SAA_10dt"      value="1"  />
+    <Param name="RA_11dt"       value="327.4" unit="deg" ucd="pos.eq.ra" />
+    <Param name="Dec_11dt"      value="27.3" unit="deg" ucd="pos.eq.dec" />
+    <Param name="SAA_11dt"      value="1"  />
+    <Param name="RA_12dt"       value="332.6" unit="deg" ucd="pos.eq.ra" />
+    <Param name="Dec_12dt"      value="28.8" unit="deg" ucd="pos.eq.dec" />
+    <Param name="SAA_12dt"      value="1"  />
+    <Param name="RA_13dt"       value="337.9" unit="deg" ucd="pos.eq.ra" />
+    <Param name="Dec_13dt"      value="30.5" unit="deg" ucd="pos.eq.dec" />
+    <Param name="SAA_13dt"      value="0"  />
+    <Param name="RA_14dt"       value="343.1" unit="deg" ucd="pos.eq.ra" />
+    <Param name="Dec_14dt"      value="32.4" unit="deg" ucd="pos.eq.dec" />
+    <Param name="SAA_14dt"      value="0"  />
+    <Param name="RA_15dt"       value="348.3" unit="deg" ucd="pos.eq.ra" />
+    <Param name="Dec_15dt"      value="34.6" unit="deg" ucd="pos.eq.dec" />
+    <Param name="SAA_15dt"      value="0"  />
+    <Param name="RA_16dt"       value="353.5" unit="deg" ucd="pos.eq.ra" />
+    <Param name="Dec_16dt"      value="37.0" unit="deg" ucd="pos.eq.dec" />
+    <Param name="SAA_16dt"      value="0"  />
+    <Param name="RA_17dt"       value="358.8" unit="deg" ucd="pos.eq.ra" />
+    <Param name="Dec_17dt"      value="39.6" unit="deg" ucd="pos.eq.dec" />
+    <Param name="SAA_17dt"      value="0"  />
+    <Param name="RA_18dt"       value="4.1" unit="deg" ucd="pos.eq.ra" />
+    <Param name="Dec_18dt"      value="42.4" unit="deg" ucd="pos.eq.dec" />
+    <Param name="SAA_18dt"      value="0"  />
+    <Param name="RA_19dt"       value="9.5" unit="deg" ucd="pos.eq.ra" />
+    <Param name="Dec_19dt"      value="45.3" unit="deg" ucd="pos.eq.dec" />
+    <Param name="SAA_19dt"      value="0"  />
+    <Param name="RA_20dt"       value="15.0" unit="deg" ucd="pos.eq.ra" />
+    <Param name="Dec_20dt"      value="48.4" unit="deg" ucd="pos.eq.dec" />
+    <Param name="SAA_20dt"      value="0"  />
+    <Param name="RA_21dt"       value="20.8" unit="deg" ucd="pos.eq.ra" />
+    <Param name="Dec_21dt"      value="51.6" unit="deg" ucd="pos.eq.dec" />
+    <Param name="SAA_21dt"      value="0"  />
+    <Param name="RA_22dt"       value="26.9" unit="deg" ucd="pos.eq.ra" />
+    <Param name="Dec_22dt"      value="54.8" unit="deg" ucd="pos.eq.dec" />
+    <Param name="SAA_22dt"      value="0"  />
+    <Param name="RA_23dt"       value="33.4" unit="deg" ucd="pos.eq.ra" />
+    <Param name="Dec_23dt"      value="58.1" unit="deg" ucd="pos.eq.dec" />
+    <Param name="SAA_23dt"      value="0"  />
+    <Param name="RA_24dt"       value="40.6" unit="deg" ucd="pos.eq.ra" />
+    <Param name="Dec_24dt"      value="61.3" unit="deg" ucd="pos.eq.dec" />
+    <Param name="SAA_24dt"      value="0"  />
+    <Param name="RA_25dt"       value="58.2" unit="deg" ucd="pos.eq.ra" />
+    <Param name="Dec_25dt"      value="58.3" unit="deg" ucd="pos.eq.dec" />
+    <Param name="SAA_25dt"      value="0"  />
+    <Param name="RA_26dt"       value="83.8" unit="deg" ucd="pos.eq.ra" />
+    <Param name="Dec_26dt"      value="35.4" unit="deg" ucd="pos.eq.dec" />
+    <Param name="SAA_26dt"      value="0"  />
+    <Param name="RA_27dt"       value="98.1" unit="deg" ucd="pos.eq.ra" />
+    <Param name="Dec_27dt"      value="13.8" unit="deg" ucd="pos.eq.dec" />
+    <Param name="SAA_27dt"      value="0"  />
+    <Param name="RA_28dt"       value="108.9" unit="deg" ucd="pos.eq.ra" />
+    <Param name="Dec_28dt"      value="-8.7" unit="deg" ucd="pos.eq.dec" />
+    <Param name="SAA_28dt"      value="0"  />
+    <Param name="RA_29dt"       value="117.3" unit="deg" ucd="pos.eq.ra" />
+    <Param name="Dec_29dt"      value="-32.0" unit="deg" ucd="pos.eq.dec" />
+    <Param name="SAA_29dt"      value="0"  />
+    <Param name="Coords_Type"   value="2" unit="dn" />
+    <Param name="Coords_String" value="pointing_direction" />
+    <Group name="Obs_Support_Info" >
+      <Description>The Sun and Moon values are valid at the time the VOEvent XML message was created.</Description>
+      <Param name="Sun_RA"        value="192.26" unit="deg" ucd="pos.eq.ra" />
+      <Param name="Sun_Dec"       value="-5.26" unit="deg" ucd="pos.eq.dec" />
+      <Param name="Sun_Distance"  value="81.98" unit="deg" ucd="pos.angDistance" />
+      <Param name="Sun_Hr_Angle"  value="-5.16" unit="hr" />
+      <Param name="Moon_RA"       value="299.12" unit="deg" ucd="pos.eq.ra" />
+      <Param name="Moon_Dec"      value="-21.92" unit="deg" ucd="pos.eq.dec" />
+      <Param name="MOON_Distance" value="60.18" unit="deg" ucd="pos.angDistance" />
+      <Param name="Moon_Illum"    value="61.79" unit="%" ucd="arith.ratio" />
+      <Param name="Galactic_Long" value="56.91" unit="deg" ucd="pos.galactic.lon" />
+      <Param name="Galactic_Lat"  value="24.41" unit="deg" ucd="pos.galactic.lat" />
+      <Param name="Ecliptic_Long" value="269.11" unit="deg" ucd="pos.ecliptic.lon" />
+      <Param name="Ecliptic_Lat"  value="54.62" unit="deg" ucd="pos.ecliptic.lat" />
+    </Group>
+    <Description>The current and soon-to-be pointing directions for the Fermi spacecraft.</Description>
+  </What>
+  <WhereWhen>
+    <ObsDataLocation>
+      <ObservatoryLocation id="GEOLUN" />
+      <ObservationLocation>
+        <AstroCoordSystem id="UTC-FK5-GEO" />
+        <AstroCoords coord_system_id="UTC-FK5-GEO">
+          <Time unit="s">
+            <TimeInstant>
+              <ISOTime>2019-10-06T21:06:00.00</ISOTime>
+            </TimeInstant>
+          </Time>
+          <Position2D unit="deg">
+            <Name1>RA</Name1>
+            <Name2>Dec</Name2>
+            <Value2>
+              <C1>269.3980</C1>
+              <C2>31.1819</C2>
+            </Value2>
+            <Error2Radius>0.0000</Error2Radius>
+          </Position2D>
+        </AstroCoords>
+      </ObservationLocation>
+    </ObsDataLocation>
+  <Description>The RA,Dec coordinates are of the type: pointing_direction.</Description>
+  </WhereWhen>
+  <How>
+    <Description>Fermi Satellite, Spacecraft</Description>
+    <Reference uri="http://gcn.gsfc.nasa.gov/fermi.html" type="url" />
+  </How>
+  <Why>
+    <Inference probability="1.00">
+      <Concept>Fermi spacecraft is currently looking in this direction.</Concept>
+    </Inference>
+  </Why>
+  <Description>
+  </Description>
+</voe:VOEvent>

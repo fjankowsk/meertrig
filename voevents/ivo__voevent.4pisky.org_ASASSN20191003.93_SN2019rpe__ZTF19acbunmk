@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<voe:VOEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:voe="http://www.ivoa.net/xml/VOEvent/v2.0" xsi:schemaLocation="http://www.ivoa.net/xml/VOEvent/v2.0 http://www.ivoa.net/xml/VOEvent/VOEvent-v2.0.xsd" version="2.0" role="observation" ivorn="ivo://voevent.4pisky.org/ASASSN#2019-10-03.93_SN2019rpe__ZTF19acbunmk">
+  <Who>
+    <Description>VOEvent created by 4PiSky bot, version 1.2.3-deploy. See https://github.com/4pisky/fourpisky-core for details.</Description>
+    <AuthorIVORN>ivo://voevent.4pisky.org/robots</AuthorIVORN>
+    <Date>2019-10-04T18:50:30</Date>
+    <Author>
+      <contributor>1.2.3-deploy</contributor>
+      <contactEmail>4pisky@timstaley.co.uk</contactEmail>
+      <contactName>Tim Staley</contactName>
+      <shortName>4PiSkyBot</shortName>
+    </Author>
+  </Who>
+  <What>
+    <Group name="asassn_params">
+      <Param name="id_other" value="SN2019rpe (= ZTF19acbunmk)"/>
+      <Param name="detection_timestamp" value="2019-10-3.93"/>
+      <Param name="ra" value="3:4:19.89"/>
+      <Param name="dec" value="-2:18:23.9"/>
+      <Param name="comment" value="known SN candidate, z=0.028, discovered 2019/10/01.419, Type Ia"/>
+      <Param name="mag_v" ucd="phot.mag" unit="mag" value="17.45"/>
+    </Group>
+    <Group name="asassn_urls">
+      <Param name="sdss_url" value="http://skyserver.sdss3.org/dr9/en/tools/chart/navi.asp?ra=46.08291&amp;dec=-2.30666&amp;scale=0.5&amp;width=600&amp;height=600"/>
+      <Param name="dss_url" value="http://archive.stsci.edu/cgi-bin/dss_search?v=poss2ukstu_red&amp;r=46.08291&amp;d=-2.30666&amp;e=J2000&amp;h=6.0&amp;w=6.0&amp;f=gif&amp;c=none&amp;fov=NONE&amp;v3="/>
+      <Param name="vizier_url" value="http://vizier.u-strasbg.fr/viz-bin/VizieR?-source=&amp;-out.add=_r&amp;-out.add=_RAJ%2C_DEJ&amp;-sort=_r&amp;-to=&amp;-out.max=50&amp;-meta.ucd=2&amp;-meta.foot=1&amp;-c=46.08291+-2.30666+&amp;-c.rs=30 "/>
+    </Group>
+  </What>
+  <WhereWhen>
+    <ObsDataLocation>
+      <ObservatoryLocation id="GEOSURFACE"/>
+      <ObservationLocation>
+        <AstroCoordSystem id="UTC-ICRS-GEO"/>
+        <AstroCoords coord_system_id="UTC-ICRS-GEO">
+          <Time unit="s">
+            <TimeInstant>
+              <ISOTime>2019-10-03T22:19:12</ISOTime>
+            </TimeInstant>
+          </Time>
+          <Position2D unit="deg">
+            <Name1>RA</Name1>
+            <Name2>Dec</Name2>
+            <Value2>
+              <C1>46.082874999999994</C1>
+              <C2>-2.3066388888888887</C2>
+            </Value2>
+            <Error2Radius>0.0044444444444444444</Error2Radius>
+          </Position2D>
+        </AstroCoords>
+      </ObservationLocation>
+    </ObsDataLocation>
+  </WhereWhen>
+  <How>
+    <Reference uri="http://www.astronomy.ohio-state.edu/asassn/transients.html"/>
+    <Description>Parsed from ASASSN listings page by 4PiSky-Bot.</Description>
+  </How>
+</voe:VOEvent>

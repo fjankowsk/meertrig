@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<voe:VOEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:voe="http://www.ivoa.net/xml/VOEvent/v2.0" xsi:schemaLocation="http://www.ivoa.net/xml/VOEvent/v2.0 http://www.ivoa.net/xml/VOEvent/VOEvent-v2.0.xsd" version="2.0" role="test" ivorn="ivo://au.edu.swin/utmost#Test_FRB201910052304/58761.9623671">
+  <Who>
+    <AuthorIVORN>ivo://au.edu.swin/cflynn</AuthorIVORN>
+    <Date>2019-10-05T23:05:48</Date>
+    <Author>
+      <contactEmail>cflynn@astro.swin.edu.au</contactEmail>
+      <contactName>Chris Flynn</contactName>
+    </Author>
+  </Who>
+  <What>
+    <Group name="event parameters">
+      <Param dataType="float" name="snr" ucd="stat.snr" value="9.56494998932"/>
+      <Param dataType="float" name="dm" ucd="phys.dispMeasure;em.radio.750-1500MHz" unit="pc/cm^3" value="330.139"/>
+      <Param dataType="float" name="width" ucd="time.duration;src.var.pulse" unit="ms" value="10.48576"/>
+      <Param dataType="float" name="gl" ucd="pos.galactic.lon" unit="Degrees" value="276.605868455"/>
+      <Param dataType="float" name="gb" ucd="pos.galactic.lat" unit="Degrees" value="6.32622785249"/>
+    </Group>
+    <Group name="advanced parameters">
+      <Param dataType="float" name="MW_dm_limit" unit="pc/cm^3" value="255.48"/>
+      <Param name="galactic_electron_model" value="NE2001"/>
+    </Group>
+    <Group name="observatory parameters">
+      <Param dataType="float" name="beam_semi-major_axis" ucd="instr.beam;pos.errorEllipse;phys.angSize.smajAxis" unit="MM" value="75"/>
+      <Param dataType="float" name="beam_semi-minor_axis" ucd="instr.beam;pos.errorEllipse;phys.angSize.sminAxis" unit="MM" value="0.35"/>
+      <Param dataType="float" name="beam_rotation_angle" ucd="instr.beam;pos.errorEllipse;instr.offset" unit="Degrees" value="0.0"/>
+      <Param dataType="float" name="sampling_time" ucd="time.resolution" unit="ms" value="0.327"/>
+      <Param dataType="float" name="bandwidth" ucd="instr.bandwidth" unit="MHz" value="31.25"/>
+      <Param dataType="float" name="nchan" ucd="meta.number;em.freq;em.bin" unit="None" value="320"/>
+      <Param dataType="float" name="centre_frequency" ucd="em.freq;instr" unit="MHz" value="835.595703125"/>
+      <Param dataType="int" name="npol" unit="None" value="1"/>
+      <Param dataType="int" name="bits_per_sample" unit="None" value="8"/>
+      <Param dataType="float" name="gain" unit="K/Jy" value="1.7"/>
+      <Param dataType="float" name="tsys" ucd="phot.antennaTemp" unit="K" value="300.0"/>
+      <Param dataType="int" name="beam" value="40">
+        <Description>Detection beam number out of total 351 beams on sky</Description>
+      </Param>
+    </Group>
+  </What>
+  <WhereWhen>
+    <ObsDataLocation>
+      <ObservatoryLocation id="MO">
+        <AstroCoordSystem id="UTC-GEOD-TOPO"/>
+        <AstroCoords coord_system_id="UTC-GEOD-TOPO">
+          <Position3D unit="deg-deg-m">
+            <Value3>
+              <C1>149.424657833</C1>
+              <C2>-35.370707</C2>
+              <C3>749.0</C3>
+            </Value3>
+          </Position3D>
+        </AstroCoords>
+      </ObservatoryLocation>
+      <ObservationLocation>
+        <AstroCoordSystem id="UTC-FK5-GEO"/>
+        <AstroCoords coord_system_id="UTC-FK5-GEO">
+          <Time unit="s">
+            <TimeInstant>
+              <ISOTime>2019-10-05T23:04:21.300000</ISOTime>
+            </TimeInstant>
+          </Time>
+          <Position2D unit="deg">
+            <Name1>RA</Name1>
+            <Name2>Dec</Name2>
+            <Value2>
+              <C1>151.7030</C1>
+              <C2>-47.9517</C2>
+            </Value2>
+            <Error2Radius>1.25</Error2Radius>
+          </Position2D>
+        </AstroCoords>
+      </ObservationLocation>
+    </ObsDataLocation>
+  </WhereWhen>
+  <How>
+    <Description>P002</Description>
+    <Description>FRB search pipeline's machine learning based classification algorithm classified this as an FRB while observations for project [PID = P002] were being carried out commensaly. UTMOST's beam is highly elongated in N-S direction. So the uncertainity in position in RA is much smaller (see beam_semi_minor_axis) than the uncertainity in Dec (see beam_semi_major_axis)</Description>
+  </How>
+  <Why importance="0.705428414398">
+    <Description>Probability of a true detection based on the classification probability of the FRB search pipeline. A probability of 1 would indicate a human verified detection and may be followed up immediately.</Description>
+  </Why>
+</voe:VOEvent>

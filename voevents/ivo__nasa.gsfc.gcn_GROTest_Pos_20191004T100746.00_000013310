@@ -1,0 +1,135 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<voe:VOEvent
+      ivorn="ivo://nasa.gsfc.gcn/GRO#Test_Pos_2019-10-04T10:07:46.00_000013-310"
+      role="test" version="2.0"
+      xmlns:voe="http://www.ivoa.net/xml/VOEvent/v2.0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.ivoa.net/xml/VOEvent/v2.0  http://www.ivoa.net/xml/VOEvent/VOEvent-v2.0.xsd" >
+  <Who>
+    <AuthorIVORN>ivo://nasa.gsfc.tan/gcn</AuthorIVORN>
+    <Author>
+      <shortName>CGRO-BATSE (via VO-GCN)</shortName>
+      <contactName>Scott Barthelmy</contactName>
+      <contactPhone>+1-301-286-3106</contactPhone>
+      <contactEmail>scott@milkyway.gsfc.nasa.gov</contactEmail>
+    </Author>
+    <Date>2019-10-04T10:07:46</Date>
+    <Description>This VOEvent message was created with GCN VOE version: 1.43 29sep19</Description>
+  </Who>
+  <What>
+    <Param name="Packet_Type"   value="2" />
+    <Param name="Pkt_Ser_Num"   value="13" />
+    <Param name="TrigID"        value="-1" unit="dn" ucd="meta.id" />
+    <Param name="Burst_TJD"     value="18760" unit="days" ucd="time" />
+    <Param name="Burst_SOD"     value="36466.00" unit="sec" ucd="time" />
+    <Param name="Burst_Inten"   value="1000" unit="cts" ucd="phot.count;em.gamma.soft" />
+    <Param name="Burst_Peak"    value="1000" unit="cts" ucd="phot.count;em.gamma.soft" />
+    <Param name="Integ_Time"    value="0.000" unit="sec" ucd="time.interval" />
+    <Param name="Phi"           value="0.00" unit="deg" ucd="pos.az.azi" />
+    <Param name="Theta"         value="0.00" unit="deg" ucd="pos.az.zd" />
+    <Param name="SC_X_RA"       value="0.00" unit="deg" ucd="pos.eq.ra" />
+    <Param name="SC_X_Dec"      value="0.00" unit="deg" ucd="pos.eq.dec" />
+    <Param name="SC_Z_RA"       value="0.00" unit="deg" ucd="pos.eq.ra" />
+    <Param name="SC_Z_Dec"      value="0.00" unit="deg" ucd="pos.eq.dec" />
+    <Param name="Trigger_ID"    value="0x2" />
+    <Param name="Misc_flags"    value="0xf0020060" />
+    <Param name="Earth_SC_Az"   value="0.00" unit="deg" ucd="pos.az.azi" />
+    <Param name="Earth_SC_El"   value="0.00" unit="deg" ucd="pos.az.zd" />
+    <Param name="SC_Radius"     value="0" unit="km" ucd="phys.size.radius" />
+    <Param name="Coords_Type"   value="1" unit="dn" />
+    <Param name="Coords_String" value="source_object" />
+    <Group name="Trigger_ID" >
+      <Param name="Suspected_GRB"         value="false" />
+      <Param name="Definite_GRB"          value="true" />
+      <Param name="Definite_Not_GRB"      value="false" />
+      <Param name="Suspected_PE"          value="true" />
+      <Param name="Definite_PE"           value="false" />
+      <Param name="Suspected_SF"          value="false" />
+      <Param name="Definite_SF"           value="false" />
+      <Param name="Definite_Unknown"      value="false" />
+      <Param name="Earthward"             value="false" />
+      <Param name="Near_Sun"              value="false" />
+      <Param name="Soft_SF"               value="false" />
+      <Param name="Soft_Flag"             value="false" />
+      <Param name="Near_SAA"              value="false" />
+      <Param name="Definite_SAA"          value="false" />
+      <Param name="Opposite_Dets_Flag"    value="false" />
+      <Param name="ISO_PE"                value="false" />
+      <Param name="ISO_GRB"               value="false" />
+      <Param name="Neg_H_Ratio"           value="false" />
+      <Param name="Neg_Iso_BC"            value="false" />
+      <Param name="Not_Soft"              value="false" />
+      <Param name="Hi_Iso_Ratio"          value="false" />
+      <Param name="Low_Inten"             value="false" />
+      <Param name="Burst_Overwrite"       value="false" />
+    </Group>
+    <Group name="Misc_Flags" >
+      <Param name="Telemetry_Present"     value="false" />
+      <Param name="Bad_Calculation"       value="false" />
+      <Param name="Comptel_FOV"           value="false" />
+      <Param name="EGRET_FOV"             value="false" />
+      <Param name="OSSE_FOV"              value="false" />
+      <Param name="Level"                 value="3" />
+      <Param name="Notice_type"           value="0" />
+      <Param name="Alex_Anti_Sun"         value="false" />
+      <Param name="IPN_Peak"              value="true" />
+      <Param name="IPN_Flue"              value="false" />
+      <Param name="XTE_Crit"              value="false" />
+      <Param name="Not_triggerable"       value="false" />
+      <Param name="Ver_Major"             value="2" />
+      <Param name="Ver_Minor"             value="1" />
+    </Group>
+    <Group name="Obs_Support_Info" >
+      <Description>The Sun and Moon values are valid at the time the VOEvent XML message was created.</Description>
+      <Param name="Sun_RA"        value="190.02" unit="deg" ucd="pos.eq.ra" />
+      <Param name="Sun_Dec"       value="-4.31" unit="deg" ucd="pos.eq.dec" />
+      <Param name="Sun_Distance"  value="109.91" unit="deg" ucd="pos.angDistance" />
+      <Param name="Sun_Hr_Angle"  value="7.87" unit="hr" />
+      <Param name="Moon_RA"       value="265.74" unit="deg" ucd="pos.eq.ra" />
+      <Param name="Moon_Dec"      value="-21.81" unit="deg" ucd="pos.eq.dec" />
+      <Param name="MOON_Distance" value="121.71" unit="deg" ucd="pos.angDistance" />
+      <Param name="Moon_Illum"    value="37.18" unit="%" ucd="arith.ratio" />
+      <Param name="Galactic_Long" value="237.34" unit="deg" ucd="pos.galactic.lon" />
+      <Param name="Galactic_Lat"  value="-39.61" unit="deg" ucd="pos.galactic.lat" />
+      <Param name="Ecliptic_Long" value="62.24" unit="deg" ucd="pos.ecliptic.lon" />
+      <Param name="Ecliptic_Lat"  value="-56.73" unit="deg" ucd="pos.ecliptic.lat" />
+    </Group>
+    <Description>Type=2: A set of test coordinates with the same format and content as Type=1 to allow for practicing.</Description>
+  </What>
+  <WhereWhen>
+    <ObsDataLocation>
+      <ObservatoryLocation id="GEOLUN" />
+      <ObservationLocation>
+        <AstroCoordSystem id="UTC-FK5-GEO" />
+        <AstroCoords coord_system_id="UTC-FK5-GEO">
+          <Time unit="s">
+            <TimeInstant>
+              <ISOTime>2019-10-04T10:07:46.00</ISOTime>
+            </TimeInstant>
+          </Time>
+          <Position2D unit="deg">
+            <Name1>RA</Name1>
+            <Name2>Dec</Name2>
+            <Value2>
+              <C1>71.8202</C1>
+              <C2>-35.0342</C2>
+            </Value2>
+            <Error2Radius>5.0000</Error2Radius>
+          </Position2D>
+        </AstroCoords>
+      </ObservationLocation>
+    </ObsDataLocation>
+  <Description>The RA,Dec coordinates are of the type: source_object.</Description>
+  </WhereWhen>
+  <How>
+    <Description>GRO Satellite, BATSE Instrument</Description>
+    <Reference uri="http://gcn.gsfc.nasa.gov/gcn/test_coords.html" type="url" />
+  </How>
+  <Why>
+    <Inference probability="0.9">
+      <Concept>process.variation.burst;em.gamma</Concept>
+    </Inference>
+  </Why>
+  <Description>
+  </Description>
+</voe:VOEvent>

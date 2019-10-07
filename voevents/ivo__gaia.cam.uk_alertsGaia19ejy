@@ -1,0 +1,60 @@
+<voe:VOEvent xmlns:voe="http://www.ivoa.net/xml/VOEvent/v2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ivorn="ivo://gaia.cam.uk/alerts#Gaia19ejy" role="observation" version="2.0" xsi:schemaLocation="http://www.ivoa.net/xml/VOEvent/v2.0 http://www.ivoa.net/xml/VOEvent/VOEvent-v2.0.xsd">
+  <Who>
+    <AuthorIVORN>ivo://gaia.cam.uk</AuthorIVORN>
+    <Author>
+      <title>Gaia Science Alerts at IoA-Cambridge</title>
+      <contactEmail>gaiaalerts@ast.cam.ac.uk</contactEmail>
+    </Author>
+    <Date>2019-10-05T16:10:41</Date>
+  </Who>
+  <What>
+    <Description>Gaia Science Alert: Gaia19ejy, magnitude 18.12</Description>
+    <Param dataType="string" name="alert identifier" ucd="meta.id">
+      <Description>Gaia alert unique identifier</Description>
+      <Value>Gaia19ejy</Value>
+    </Param>
+    <Group name="alert-magnitude">
+      <Param dataType="float" name="averagemag" ucd="phot.mag" unit="mag" value="18.12"/>
+      <Param dataType="float" name="averagemag error" ucd="phot.mag;stat.error" unit="mag" value="0.05"/>
+    </Group>
+    <Group name="historic-magnitude">
+      <Param dataType="float" name="averagemag" ucd="phot.mag" unit="mag" value=""/>
+      <Param dataType="float" name="averagemag error" ucd="phot.mag;stat.error" unit="mag" value=""/>
+    </Group>
+    <Param name="timescale" ucd="time.scale" value="TCB"/>
+    <Param name="alerting timestamp" ucd="time" value="2019-09-11T20:31:54"/>
+    <Param name="bandpass" ucd="instr.bandpass" value="G"/>
+    <Reference type="url" uri="http://gsaweb.ast.cam.ac.uk/alerts/alert/Gaia19ejy"/>
+  </What>
+  <WhereWhen>
+    <ObsDataLocation>
+      <ObservatoryLocation id="GAIA"/>
+      <ObservationLocation>
+        <AstroCoordSystem id="TDB-ICRS-BARY"/>
+        <AstroCoords coord_system_id="TDB-ICRS-BARY">
+          <Time unit="s">
+            <TimeInstant>
+              <ISOTime>2019-09-11T20:31:33</ISOTime>
+            </TimeInstant>
+          </Time>
+          <Position2D unit="deg">
+            <Name1>RA</Name1>
+            <Name2>Dec</Name2>
+            <Value2>
+              <C1>63.30447</C1>
+              <C2>-12.33835</C2>
+            </Value2>
+            <Error2Radius>0.00002</Error2Radius>
+          </Position2D>
+        </AstroCoords>
+      </ObservationLocation>
+    </ObsDataLocation>
+  </WhereWhen>
+  <How>
+    <Reference type="url" uri="http://gsaweb.ast.cam.ac.uk/alerts/"/>
+    <Description>Transient discovered from Gaia data</Description>
+  </How>
+  <Why>
+    <Description>candidate SN near galaxy 2MASX J04131297-1220124</Description>
+  </Why>
+</voe:VOEvent>
