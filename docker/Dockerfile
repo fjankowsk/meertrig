@@ -37,6 +37,10 @@ RUN pip3 install \
 # 4piskytools
 RUN pip3 install git+https://github.com/timstaley/fourpiskytools.git@master
 
+# mosaic for beam calculations
+#RUN pip3 install git+https://gitlab.mpifr-bonn.mpg.de/wchen/Beamforming.git@master
+RUN git clone https://gitlab.mpifr-bonn.mpg.de/wchen/Beamforming.git /software/mosaic
+
 # install our software in docker image
 ARG SOFT_PATH="/software/meertrig"
 
