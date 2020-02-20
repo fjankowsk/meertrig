@@ -108,13 +108,14 @@ def parse_args():
 def main():
     args = parse_args()
 
-    with open('observatory_params.yml') as fd:
-        observatory_params = yaml.load(fd.read())
+    with open('config/observatory_params.yml') as fd:
+        params = yaml.load(fd.read())
 
     # parse coordinates
     c = SkyCoord(
-        ra=args.ra * units.degree,
-        dec=args.dec * units.degree,
+        ra=args.ra,
+        dec=args.dec,
+        units=(units.degree, units.degree),
         frame='icrs'
     )
 
@@ -122,7 +123,7 @@ def main():
     gl = g.l.deg
     gb = g.b.deg
 
-    event_params = {
+    event = {
         'dm': args.dm,
         'dm_err': args.dm_err,
         'width': args.width,
@@ -143,7 +144,9 @@ def main():
         'short_name': 'FRB detection'
     }
 
-    generate_voevent(observatory_params, event_params)
+    params.update(event)
+
+    generate_voevent(params)
 
 if __name__ == "__main__":
     main()
