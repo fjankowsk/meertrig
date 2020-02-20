@@ -1,1 +1,1 @@
-from meertrapdb.version import __version__
+from meertrig.version import __version__
