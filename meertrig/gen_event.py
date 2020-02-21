@@ -150,12 +150,13 @@ def main():
         'galactic_electron_model': 'ymw16',
         'observatory_location': 'MeerKAT',
         'name': args.name,
+        'descriptions': ['Bla', 'Test'],
         'importance': args.importance,
         'internal': 1,
         'test': 1
     }
 
-    vostr = generate_voevent(params, False)
+    vostr = generate_voevent(params, True)
     print(vostr)
 
     print('All done.')

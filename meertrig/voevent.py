@@ -32,6 +32,12 @@ def generate_voevent(params, is_test):
     # parse utc
     utc = Time(params['utc'], format='iso', scale='utc')
 
+    # construct stream
+    stream = '{0}.{1}/alert'.format(
+        params['author_ivorn'],
+        str(params['backend']).lower()
+    )
+
     # construct ivorn
     ivorn = '{0}{1}{2}/{3}'.format(
         params['name'],
@@ -40,25 +46,26 @@ def generate_voevent(params, is_test):
         utc.mjd
     )
 
+    # switch between test and on-sky events
     if is_test:
         role = vp.definitions.roles.test
     else:
         role = vp.definitions.roles.observation
 
     v = vp.Voevent(
-        stream='nl.astron.apertif/alert',
+        stream=stream,
         stream_id=ivorn,
         role=role
     )
 
-    # author origin information
+    # 1) Who (author origin information)
     vp.set_who(
         v,
         date=Time.now().datetime,
         author_ivorn=params['author_ivorn']
     )
 
-    # author contact information
+    # 2) author contact information
     vp.set_author(
         v,
         title=params['title'],
@@ -67,9 +74,7 @@ def generate_voevent(params, is_test):
         shortName=params['short_name']
     )
 
-    # parameter definitions
-
-    # backend-specific parameters
+    # instrument-specific parameters
     beam_sMa = vp.Param(
         name='beam_semi-major_axis',
         unit='MM',
@@ -169,6 +174,7 @@ def generate_voevent(params, is_test):
 
     beam.Description = 'Detection beam number out of a total of up to 768 beams on the sky.'
 
+    # 3) What (observatory parameters)
     v.What.append(
         vp.Group(
             params=[
@@ -240,6 +246,7 @@ def generate_voevent(params, is_test):
         ac=True
     )
 
+    # 4) What (event parameters)
     v.What.append(
         vp.Group(
             params=[DM, DM_err, Width, SNR, Flux, Gl, Gb],
@@ -247,7 +254,7 @@ def generate_voevent(params, is_test):
         )
     )
 
-    # advanced parameters (note, change script if using a differeing MW model)
+    # advanced parameters
     mw_dm = vp.Param(
         name='MW_dm_limit',
         value=params['mw_dm_limit'],
@@ -269,6 +276,7 @@ def generate_voevent(params, is_test):
 
     redshift_inferred.Description = 'Redshift estimated using z = DM/1200.0 (Ioka 2003)'
 
+    # 5) What (advanced parameters)
     v.What.append(
         vp.Group(
             params=[mw_dm, mw_model, redshift_inferred],
@@ -276,7 +284,7 @@ def generate_voevent(params, is_test):
         )
     )
 
-    # WhereWhen
+    # event position
     coords = vp.Position2D(
         ra=str(params['ra']),
         dec=str(params['dec']),
@@ -288,6 +296,7 @@ def generate_voevent(params, is_test):
     # add utc timezone info that is required for vp
     obs_time = utc.datetime.replace(tzinfo=pytz.UTC)
 
+    # 6) WhereWhen
     vp.add_where_when(
         v,
         coords=coords,
@@ -295,20 +304,21 @@ def generate_voevent(params, is_test):
         observatory_location=params['observatory_location']
     )
 
-    # Why
+    # 7) How
+    vp.add_how(
+        v,
+        descriptions=params['descriptions']
+    )
+
+    # 8) Why
     vp.add_why(
         v,
         importance=params['importance']
     )
-    v.Why.Name = params['name']
 
-    # debug output
-    #for item in [v.Who, v.What, v.WhereWhen, v.Why]:
-    #    print(vp.prettystr(item))
+    v.Why.Description = 'Probability of event being an astrophysical detection, based on machine-learning classifier.'
 
     # check if the packet is voevent v2.0 compliant
-    if not vp.valid_as_v2_0(v):
-        # print debug output
-        vp.assert_valid_as_v2_0(v)
+    vp.assert_valid_as_v2_0(v)
 
     return vp.prettystr(v)
