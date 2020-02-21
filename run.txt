@@ -1,0 +1,1 @@
+python3 meertrig/gen_event.py '2020-02-21 08:00:00' 08:35:15 45:12:10 123.0 --snr 12.3 --width 0.6 --flux 0.8 --mw_dm 123 --name Test1 --importance 0.7
