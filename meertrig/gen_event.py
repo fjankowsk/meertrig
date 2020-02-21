@@ -18,7 +18,24 @@ def parse_args():
     )
 
     parser.add_argument(
-        '--dm',
+        'utc',
+        help='The UTC of the event.'
+    )
+
+    parser.add_argument(
+        'ra',
+        type=str,
+        help='RA in hms notation.'
+    )
+
+    parser.add_argument(
+        'dec',
+        type=str,
+        help='Dec in dms notation.'
+    )
+
+    parser.add_argument(
+        'dm',
         type=float,
         help='Dispersion measure in pc/cm3.'
     )
@@ -49,18 +66,6 @@ def parse_args():
     )
 
     parser.add_argument(
-        '--ra',
-        type=float,
-        help='RA in degrees.'
-    )
-
-    parser.add_argument(
-        '--dec',
-        type=float,
-        help='Dec in degrees.'
-    )
-
-    parser.add_argument(
         '--semiMaj',
         type=float,
         default=15.0,
@@ -75,7 +80,7 @@ def parse_args():
     )
 
     parser.add_argument(
-        '--ymw16',
+        '--mw_dm',
         type=float
     )
 
@@ -90,12 +95,6 @@ def parse_args():
         default=0.0
     )
 
-    parser.add_argument(
-        '--utc',
-        default=datetime.utcnow(),
-        help='The UTC of the event (default: now).'
-    )
-
     args = parser.parse_args()
 
     return args
@@ -108,45 +107,58 @@ def parse_args():
 def main():
     args = parse_args()
 
-    with open('config/observatory_params.yml') as fd:
-        params = yaml.load(fd.read())
-
     # parse coordinates
     c = SkyCoord(
         ra=args.ra,
         dec=args.dec,
-        units=(units.degree, units.degree),
+        unit=(units.degree, units.degree),
         frame='icrs'
     )
 
     g = c.galactic
-    gl = g.l.deg
-    gb = g.b.deg
 
-    event = {
+    params = {
+        'utc': args.utc,
+        'author_ivorn': 'uk.manchester',
+        'title': 'Test event',
+        'contact_name': 'Fabian Jankowski',
+        'contact_email': 'Test@test.com',
+        'short_name': 'Test event',
+        'beam_semi_major': args.semiMaj,
+        'beam_semi_minor': args.semiMin,
+        'beam_rotation_angle': 0.0,
+        'tsamp': 0.367,
+        'cfreq': 1284.0,
+        'bandwidth': 856.0,
+        'nchan': 4096,
+        'npol': 2,
+        'bits': 8,
+        'gain': 2.0, # XXX
+        'tsys': 20.0, # XXX
+        'backend': 'MeerTRAP',
+        'beam': 123,
         'dm': args.dm,
         'dm_err': args.dm_err,
         'width': args.width,
         'snr': args.snr,
         'flux': args.flux,
-        'ra': args.ra,
-        'dec': args.dec,
-        'beam_semi_major': args.semiMaj,
-        'beam_semi_minor': args.semiMin,
-        'beam_rotation_angle': 0,
-        'tsamp': 0,
-        'ymw16': args.ymw16,
+        'ra': c.ra.deg,
+        'dec': c.dec.deg,
+        'gl': g.l.deg,
+        'gb': g.b.deg,
+        'mw_dm_limit': args.mw_dm,
+        'galactic_electron_model': 'ymw16',
+        'observatory_location': 'MeerKAT',
         'name': args.name,
         'importance': args.importance,
-        'utc': args.utc,
-        'gl': gl,
-        'gb': gb,
-        'short_name': 'FRB detection'
+        'internal': 1,
+        'test': 1
     }
 
-    params.update(event)
+    vostr = generate_voevent(params, False)
+    print(vostr)
 
-    generate_voevent(params)
+    print('All done.')
 
 if __name__ == "__main__":
     main()

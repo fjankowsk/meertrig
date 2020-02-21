@@ -1,13 +1,10 @@
-from datetime import datetime
-import pytz
-from xml.dom import minidom
-
 import astropy.units as units
 from astropy.time import Time
+import pytz
 import voeventparse as vp
 
 
-def generate_voevent(params):
+def generate_voevent(params, is_test):
     """
     Generate a VOEvent.
 
@@ -15,15 +12,17 @@ def generate_voevent(params):
     ----------
     params: dict
         Parameters of the event.
+    is_test: bool
+        Determines whether the event is a test.
 
     Returns
     -------
     vostring: str
-        The VOEvent as a string dump.
+        The VOEvent as a pretty-printed string dump.
 
     Raises
     ------
-    RuntimeError
+    lxml.etree.DocumentInvalid
         If the event packet does not comply to the VOEvent standard.
     """
 
@@ -31,37 +30,32 @@ def generate_voevent(params):
     errDeg = params['beam_semi_major'] / 60.0
 
     # parse utc
-    utc = params['utc']
-    utc_YY = int(utc[:4])
-    utc_MM = int(utc[5:7])
-    utc_DD = int(utc[8:10])
-    utc_hh = int(utc[11:13])
-    utc_mm = int(utc[14:16])
-    utc_ss = float(utc[17:])
-    t = Time('T'.join([utc[:10], utc[11:]]), scale='utc', format='isot')
-    mjd = t.mjd
+    utc = Time(params['utc'], format='iso', scale='utc')
 
-    now = Time.now()
-    mjd_now = now.mjd
+    # construct ivorn
+    ivorn = '{0}{1}{2}/{3}'.format(
+        params['name'],
+        utc.strftime('%H'),
+        utc.strftime('%M'),
+        utc.mjd
+    )
 
-    ivorn = ''.join([params['name'], str(utc_hh), str(utc_mm), '/', str(mjd_now)])
+    if is_test:
+        role = vp.definitions.roles.test
+    else:
+        role = vp.definitions.roles.observation
 
     v = vp.Voevent(
         stream='nl.astron.apertif/alert',
         stream_id=ivorn,
-        role=vp.definitions.roles.test
+        role=role
     )
-
-    # v = vp.Voevent(
-    #   stream='nl.astron.apertif/alert',
-    #   stream_id=ivorn,
-    #   role=vp.definitions.roles.observation)
 
     # author origin information
     vp.set_who(
         v,
-        date=datetime.utcnow(),
-        author_ivorn='nl.astron'
+        date=Time.now().datetime,
+        author_ivorn=params['author_ivorn']
     )
 
     # author contact information
@@ -126,7 +120,7 @@ def generate_voevent(params):
 
     nchan = vp.Param(
         name='nchan',
-        value=params['nchan'],
+        value=str(params['nchan']),
         dataType='int',
         ucd='meta.number;em.freq;em.bin',
         unit='None'
@@ -134,14 +128,14 @@ def generate_voevent(params):
 
     npol = vp.Param(
         name='npol',
-        value='2',
+        value=str(params['npol']),
         dataType='int',
         unit='None'
     )
 
     bits = vp.Param(
         name='bits_per_sample',
-        value='8',
+        value=str(params['bits']),
         dataType='int',
         unit='None'
     )
@@ -168,7 +162,7 @@ def generate_voevent(params):
 
     beam = vp.Param(
         name='beam',
-        value=params['beam'],
+        value=str(params['beam']),
         unit='None',
         dataType='int'
     )
@@ -232,18 +226,18 @@ def generate_voevent(params):
 
     Gl = vp.Param(
         name='gl',
+        value=str(params['gl']),
         ucd='pos.galactic.lon',
         unit='Degrees',
-        ac=True,
-        value=params['gl']
+        ac=True
     )
 
     Gb = vp.Param(
         name='gb',
+        value=str(params['gb']),
         ucd='pos.galactic.lat',
         unit='Degrees',
-        ac=True,
-        value=params['gb']
+        ac=True
     )
 
     v.What.append(
@@ -256,9 +250,9 @@ def generate_voevent(params):
     # advanced parameters (note, change script if using a differeing MW model)
     mw_dm = vp.Param(
         name='MW_dm_limit',
+        value=params['mw_dm_limit'],
         unit='pc/cm^3',
-        ac=True,
-        value=params['ymw16']
+        ac=True
     )
 
     mw_model = vp.Param(
@@ -284,14 +278,15 @@ def generate_voevent(params):
 
     # WhereWhen
     coords = vp.Position2D(
-        ra=params['ra'],
-        dec=params['dec'],
+        ra=str(params['ra']),
+        dec=str(params['dec']),
         err=errDeg,
         units='deg',
         system=vp.definitions.sky_coord_system.utc_icrs_geo
     )
 
-    obs_time = datetime(utc_YY, utc_MM, utc_DD, utc_hh, utc_mm, int(utc_ss), tzinfo=pytz.UTC)
+    # add utc timezone info that is required for vp
+    obs_time = utc.datetime.replace(tzinfo=pytz.UTC)
 
     vp.add_where_when(
         v,
@@ -307,14 +302,13 @@ def generate_voevent(params):
     )
     v.Why.Name = params['name']
 
+    # debug output
+    #for item in [v.Who, v.What, v.WhereWhen, v.Why]:
+    #    print(vp.prettystr(item))
+
     # check if the packet is voevent v2.0 compliant
     if not vp.valid_as_v2_0(v):
-        raise RuntimeError('The VOEvent does not comply to the specification: {0}'.format(params['name']))
+        # print debug output
+        vp.assert_valid_as_v2_0(v)
 
-    # debug output
-    for item in [v.Who, v.What, v.WhereWhen, v.Why]:
-        print(vp.prettystr(item))
-
-    vostring = vp.dumps(v)
-
-    return vostring
+    return vp.prettystr(v)
