@@ -74,6 +74,42 @@ def generate_voevent(params, is_test):
         shortName=params['short_name']
     )
 
+    # meta data
+    internal = vp.Param(
+        name='internal',
+        value=str(params['internal']),
+        dataType='int',
+        unit='None'
+    )
+
+    internal.Description = 'If 1, event should be distributed among the MeerTRAP collaboration only. Open distribution if 0.'
+
+    open_alert = vp.Param(
+        name='open_alert',
+        value=str(params['open_alert']),
+        dataType='int',
+        unit='None'
+    )
+
+    open_alert.Description = 'If 1, this is an open event. 0 if not.'
+
+    test = vp.Param(
+        name='test',
+        value=str(params['test']),
+        dataType='int',
+        unit='None'
+    )
+
+    test.Description = 'If 1, this is a test event. 0 if not.'
+
+    # 3) What (meta data)
+    v.What.append(
+        vp.Group(
+            params=[internal, open_alert, test],
+            name='meta information'
+        )
+    )
+
     # instrument-specific parameters
     beam_sMa = vp.Param(
         name='beam_semi-major_axis',
@@ -162,7 +198,8 @@ def generate_voevent(params, is_test):
 
     backend = vp.Param(
         name='backend',
-        value=params['backend']
+        value=params['backend'],
+        dataType='string'
     )
 
     beam = vp.Param(
@@ -174,7 +211,7 @@ def generate_voevent(params, is_test):
 
     beam.Description = 'Detection beam number out of a total of up to 768 beams on the sky.'
 
-    # 3) What (observatory parameters)
+    # 4) What (observatory parameters)
     v.What.append(
         vp.Group(
             params=[
@@ -235,7 +272,7 @@ def generate_voevent(params, is_test):
         value=str(params['gl']),
         ucd='pos.galactic.lon',
         unit='Degrees',
-        ac=True
+        dataType='float'
     )
 
     Gb = vp.Param(
@@ -243,10 +280,10 @@ def generate_voevent(params, is_test):
         value=str(params['gb']),
         ucd='pos.galactic.lat',
         unit='Degrees',
-        ac=True
+        dataType='float'
     )
 
-    # 4) What (event parameters)
+    # 5) What (event parameters)
     v.What.append(
         vp.Group(
             params=[DM, DM_err, Width, SNR, Flux, Gl, Gb],
@@ -264,19 +301,21 @@ def generate_voevent(params, is_test):
 
     mw_model = vp.Param(
         name='galactic_electron_model',
-        value=params['galactic_electron_model']
+        value=params['galactic_electron_model'],
+        dataType='string'
     )
 
     redshift_inferred = vp.Param(
         name='redshift_inferred',
         ucd='src.redshift',
         unit='None',
-        value=z
+        value=z,
+        ac=True
     )
 
     redshift_inferred.Description = 'Redshift estimated using z = DM/1200.0 (Ioka 2003)'
 
-    # 5) What (advanced parameters)
+    # 6) What (advanced parameters)
     v.What.append(
         vp.Group(
             params=[mw_dm, mw_model, redshift_inferred],
@@ -296,7 +335,7 @@ def generate_voevent(params, is_test):
     # add utc timezone info that is required for vp
     obs_time = utc.datetime.replace(tzinfo=pytz.UTC)
 
-    # 6) WhereWhen
+    # 7) WhereWhen
     vp.add_where_when(
         v,
         coords=coords,
@@ -304,13 +343,13 @@ def generate_voevent(params, is_test):
         observatory_location=params['observatory_location']
     )
 
-    # 7) How
+    # 8) How
     vp.add_how(
         v,
         descriptions=params['descriptions']
     )
 
-    # 8) Why
+    # 9) Why
     vp.add_why(
         v,
         importance=params['importance']
