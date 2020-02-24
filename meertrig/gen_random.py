@@ -134,7 +134,7 @@ def main():
 
     while True:
         ve = generate_random_event(v, nr)
-        ve.send_event(ve)
+        v.send_event(ve)
 
         nr += 1
         sleep(args.period)
