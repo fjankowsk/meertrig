@@ -110,7 +110,7 @@ def generate_random_event(v, nr):
 def main():
     parse_args()
 
-    v = VOEvent(host='localhost', port=8091)
+    v = VOEvent(host='localhost', port=8089)
     nr = 0
 
     while True:

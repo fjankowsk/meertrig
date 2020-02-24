@@ -156,7 +156,7 @@ def main():
         'test': 1
     }
 
-    v = VOEvent(host='localhost', port=8091)
+    v = VOEvent(host='localhost', port=8089)
     v.generate_event(params, True)
 
     print('All done.')
