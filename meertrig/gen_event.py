@@ -1,5 +1,4 @@
 import argparse
-from datetime import datetime
 
 from astropy.coordinates import SkyCoord
 import astropy.units as units
@@ -119,11 +118,11 @@ def main():
 
     params = {
         'utc': args.utc,
-        'author_ivorn': 'uk.manchester',
-        'title': 'Test event',
+        'author_ivorn': 'uk.manchester.meertrap',
+        'title': 'Detection of test event',
+        'short_name': 'Test event',
         'contact_name': 'Fabian Jankowski',
         'contact_email': 'Test@test.com',
-        'short_name': 'Test event',
         'beam_semi_major': args.semiMaj,
         'beam_semi_minor': args.semiMin,
         'beam_rotation_angle': 0.0,
@@ -150,7 +149,7 @@ def main():
         'galactic_electron_model': 'ymw16',
         'observatory_location': 'MeerKAT',
         'name': args.name,
-        'descriptions': ['Bla', 'Test'],
+        'descriptions': ['Transient detected using the MeerTRAP real-time single-pulse search pipeline.'],
         'importance': args.importance,
         'internal': 1,
         'open_alert': 0,

@@ -50,13 +50,10 @@ class VOEvent:
         utc = Time(params['utc'], format='iso', scale='utc')
 
         # construct stream
-        stream = '{0}.{1}/alert'.format(
-            params['author_ivorn'],
-            str(params['backend']).lower()
-        )
+        stream = '{0}/alert'.format(params['author_ivorn'])
 
         # construct ivorn
-        ivorn = '{0}{1}{2}/{3}'.format(
+        ivorn = '{0}{1}{2}/{3:.5f}'.format(
             params['name'],
             utc.strftime('%H'),
             utc.strftime('%M'),
@@ -276,13 +273,13 @@ class VOEvent:
 
         Flux = vp.Param(
             name='flux',
-            ucd='phot.flux',
+            ucd='phot.flux;em.radio',
             unit='Jy',
             ac=True,
             value=params['flux']
         )
 
-        Flux.Description = 'Calculated from radiometer equation. Not calibrated.'
+        Flux.Description = 'Calculated using the radiometer equation. Not calibrated.'
 
         Gl = vp.Param(
             name='gl',
