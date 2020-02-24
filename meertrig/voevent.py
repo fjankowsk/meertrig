@@ -34,8 +34,8 @@ class VOEvent:
 
         Returns
         -------
-        vostring: str
-            The VOEvent as a pretty-printed string dump.
+        v: ~voeventparse.Voevent
+            The created VOEvent packet.
 
         Raises
         ------
@@ -374,7 +374,9 @@ class VOEvent:
         # check if the packet is voevent v2.0 compliant
         vp.assert_valid_as_v2_0(v)
 
-        return vp.prettystr(v)
+        print(vp.prettystr(v))
+
+        return v
 
 
     def send_event(self, voevent):
@@ -397,4 +399,4 @@ class VOEvent:
 
         # we could wrap 'comet-sendvo' here ourselves to avoid using fourpiskytools
         # it just does that for us
-        fourpiskytools.send_event(voevent, self.host, self.port)
+        fourpiskytools.comet.send_voevent(voevent, self.host, self.port)

@@ -2,6 +2,7 @@ import argparse
 from time import sleep
 
 from astropy.coordinates import SkyCoord
+from astropy.time import Time
 import astropy.units as units
 import numpy as np
 
@@ -35,6 +36,7 @@ def generate_random_event(v, nr):
     """
 
     # generate random parameters
+    utc = Time.now().iso
     ra = np.random.uniform(0, 360)
     dec = np.random.uniform(-90, 25)
     beam = np.random.randint(1, 768)
@@ -57,7 +59,7 @@ def generate_random_event(v, nr):
     g = c.galactic
 
     params = {
-        'utc': args.utc,
+        'utc': utc,
         'author_ivorn': 'uk.manchester.meertrap',
         'title': 'Detection of test event',
         'short_name': 'Test event',
@@ -113,6 +115,9 @@ def main():
 
     while True:
         vostr = generate_random_event(v, nr)
+        print(vostr)
+        v.send_event(vostr)
+
         nr += 1
         sleep(300)
 
