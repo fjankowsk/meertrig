@@ -1,3 +1,8 @@
+#
+#   2020 Fabian Jankowski
+#   VOEvent class.
+#
+
 from astropy.time import Time
 import pytz
 import voeventparse as vp

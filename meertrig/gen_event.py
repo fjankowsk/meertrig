@@ -1,3 +1,7 @@
+#
+#   Generate VOEvent from the commandline.
+#
+
 import argparse
 
 from astropy.coordinates import SkyCoord
