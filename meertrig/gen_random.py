@@ -1,3 +1,8 @@
+#
+#   2020 Fabian Jankowski
+#   Generate periodic VOEvents with randomised content.
+#
+
 import argparse
 from time import sleep
 
@@ -6,6 +11,7 @@ from astropy.time import Time
 import astropy.units as units
 import numpy as np
 
+from meertrig.config_helpers import get_config
 from meertrig.voevent import VOEvent
 
 
@@ -16,6 +22,13 @@ def parse_args():
 
     parser = argparse.ArgumentParser(
         description='Generate VOEvents with random content.'
+    )
+
+    parser.add_argument(
+        '--period',
+        type=float,
+        default=300,
+        help='Emit one event every period seconds (default: 300).'
     )
 
     args = parser.parse_args()
@@ -108,20 +121,26 @@ def generate_random_event(v, nr):
 #
 
 def main():
-    parse_args()
+    args = parse_args()
 
-    v = VOEvent(host='localhost', port=8089)
+    config = get_config()
+
+    v = VOEvent(
+        host=config['broker']['host'],
+        port=config['broker']['port']
+    )
+
     nr = 0
 
     while True:
-        vostr = generate_random_event(v, nr)
-        print(vostr)
-        v.send_event(vostr)
+        ve = generate_random_event(v, nr)
+        ve.send_event(ve)
 
         nr += 1
-        sleep(300)
+        sleep(args.period)
 
     print('All done.')
+
 
 if __name__ == "__main__":
     main()
