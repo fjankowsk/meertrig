@@ -10,6 +10,10 @@ import yaml
 
 from meertrig.voevent import VOEvent
 
+# astropy.units generates members dynamically, pylint therefore fails
+# disable the corresponding pylint test for now
+# pylint: disable=E1101
+
 
 def parse_args():
     """
