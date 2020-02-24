@@ -1,16 +1,25 @@
-import astropy.units as units
 from astropy.time import Time
 import pytz
 import voeventparse as vp
+import fourpiskytools
 
 
 class VOEvent:
-    def __init__(self):
+    def __init__(self, host, port):
         """
         Class to handle VOEvents.
+
+        Parameters
+        ----------
+        host: str
+            The name or IP of the VOEvent broker to use.
+        port: int
+            The port to use to submit VOEvent to on the broker.
         """
 
-        pass
+        self.host = host
+        self.port = port
+
 
     def generate_event(self, params, is_test):
         """
@@ -371,9 +380,24 @@ class VOEvent:
         return vp.prettystr(v)
 
 
-    def send_event(self):
+    def send_event(self, voevent):
         """
         Send an event to the VOEvent broker.
+
+        Parameters
+        ----------
+        voevent: str
+            The VOEvent to be send.
+
+        Raises
+        ------
+        lxml.etree.DocumentInvalid
+            If the event packet does not comply to the VOEvent standard.
         """
 
-        pass
+        # check if the packet is voevent v2.0 compliant
+        vp.assert_valid_as_v2_0(voevent)
+
+        # we could wrap 'comet-sendvo' here ourselves to avoid using fourpiskytools
+        # it just does that for us
+        fourpiskytools.send_event(voevent, self.host, self.port)

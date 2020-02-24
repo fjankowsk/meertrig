@@ -157,7 +157,7 @@ def main():
         'test': 1
     }
 
-    v = VOEvent()
+    v = VOEvent(host='localhost', port=8091)
 
     vostr = v.generate_event(params, True)
     print(vostr)
