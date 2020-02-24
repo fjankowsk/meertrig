@@ -1,0 +1,5 @@
+# voevent broker to use
+broker:
+    hostname: 10.97.1.13
+    port: 8091
+    broadcast_port: 8092
