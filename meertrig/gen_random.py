@@ -63,8 +63,8 @@ def generate_random_event(v, nr):
         'short_name': 'Test event',
         'contact_name': 'Fabian Jankowski',
         'contact_email': 'Test@test.com',
-        'beam_semi_major': args.semiMaj,
-        'beam_semi_minor': args.semiMin,
+        'beam_semi_major': 64.0,
+        'beam_semi_minor': 28.8,
         'beam_rotation_angle': 0.0,
         'tsamp': 0.367,
         'cfreq': 1284.0,
@@ -106,7 +106,7 @@ def generate_random_event(v, nr):
 #
 
 def main():
-    args = parse_args()
+    parse_args()
 
     v = VOEvent(host='localhost', port=8091)
     nr = 0
