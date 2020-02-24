@@ -5,7 +5,7 @@ from astropy.coordinates import SkyCoord
 import astropy.units as units
 import yaml
 
-from meertrig.voevent import generate_voevent
+from meertrig.voevent import VOEvent
 
 
 def parse_args():
@@ -157,7 +157,9 @@ def main():
         'test': 1
     }
 
-    vostr = generate_voevent(params, True)
+    v = VOEvent()
+
+    vostr = v.generate_event(params, True)
     print(vostr)
 
     print('All done.')
