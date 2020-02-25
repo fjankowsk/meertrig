@@ -8,6 +8,7 @@ from astropy.coordinates import SkyCoord
 import astropy.units as units
 import yaml
 
+from meertrig.config_helpers import get_config
 from meertrig.voevent import VOEvent
 
 # astropy.units generates members dynamically, pylint therefore fails
@@ -114,6 +115,11 @@ def parse_args():
 def main():
     args = parse_args()
 
+    defaults = get_config('defaults.yml')
+
+    # treat email address
+    defaults['contact_email'] = defaults['contact_email'].replace(' AT ', '@')
+
     # parse coordinates
     c = SkyCoord(
         ra=args.ra,
@@ -124,13 +130,10 @@ def main():
 
     g = c.galactic
 
-    params = {
+    event_params = {
         'utc': args.utc,
-        'author_ivorn': 'uk.manchester.meertrap',
         'title': 'Detection of test event',
         'short_name': 'Test event',
-        'contact_name': 'Fabian Jankowski',
-        'contact_email': 'Test@test.com',
         'beam_semi_major': args.semiMaj,
         'beam_semi_minor': args.semiMin,
         'beam_rotation_angle': 0.0,
@@ -138,11 +141,6 @@ def main():
         'cfreq': 1284.0,
         'bandwidth': 856.0,
         'nchan': 4096,
-        'npol': 2,
-        'bits': 8,
-        'gain': 2.0, # XXX
-        'tsys': 20.0, # XXX
-        'backend': 'MeerTRAP',
         'beam': 123,
         'dm': args.dm,
         'dm_err': args.dm_err,
@@ -154,15 +152,15 @@ def main():
         'gl': g.l.deg,
         'gb': g.b.deg,
         'mw_dm_limit': args.mw_dm,
-        'galactic_electron_model': 'ymw16',
-        'observatory_location': 'MeerKAT',
         'name': args.name,
-        'descriptions': ['Transient detected using the MeerTRAP real-time single-pulse search pipeline.'],
         'importance': args.importance,
         'internal': 1,
         'open_alert': 0,
         'test': 1
     }
+
+    params = defaults.copy()
+    params.update(event_params)
 
     v = VOEvent(host='localhost', port=8089)
     v.generate_event(params, True)
