@@ -4,8 +4,8 @@ contact_name: Fabian Jankowski
 contact_email: fabian.jankowski AT manchester.ac.uk
 npol: 2
 bits: 8
-gain: 2.0 # XXX
-tsys: 20.0 # XXX
+gain: 2.8
+tsys: 18.0
 backend: MeerTRAP
 galactic_electron_model: ymw16
 observatory_location: MeerKAT
