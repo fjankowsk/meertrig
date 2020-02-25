@@ -9,9 +9,14 @@ import os.path
 import yaml
 
 
-def get_config():
+def get_config(filename):
     """
     Load and parse a config file.
+
+    Parameters
+    ----------
+    filename: str
+        The name of the config file to parse, relative to the config directory.
 
     Returns
     -------
@@ -24,7 +29,7 @@ def get_config():
         If `filename` does not exist.
     """
 
-    filename = os.path.join(os.path.dirname(__file__), 'config', 'config.yml')
+    filename = os.path.join(os.path.dirname(__file__), 'config', filename)
     filename = os.path.abspath(filename)
 
     log = logging.getLogger('meertrig.config_helpers')

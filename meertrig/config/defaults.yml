@@ -1,3 +1,13 @@
-title: Bla
-contact_name: Fabian
-contact_email: test@test.com
+# default value for the voevents
+author_ivorn: uk.manchester.meertrap
+contact_name: Fabian Jankowski
+contact_email: fabian.jankowski AT manchester.ac.uk
+npol: 2
+bits: 8
+gain: 2.0 # XXX
+tsys: 20.0 # XXX
+backend: MeerTRAP
+galactic_electron_model: ymw16
+observatory_location: MeerKAT
+descriptions:
+    - Transient detected using the MeerTRAP real-time single-pulse search pipeline.

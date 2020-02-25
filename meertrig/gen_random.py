@@ -40,7 +40,7 @@ def parse_args():
     return args
 
 
-def generate_random_event(v, nr):
+def generate_random_event(v, t_defaults, nr):
     """
     Generate a random VOEvent.
 
@@ -48,9 +48,13 @@ def generate_random_event(v, nr):
     ----------
     v: ~meertrip.VOEvent
         VOEvent instance.
+    t_defaults: dict
+        Dictionary with default parameters for the VOEvents.
     nr: int
         The number of the event.
     """
+
+    params = t_defaults.copy()
 
     # generate random parameters
     utc = Time.now().iso
@@ -75,13 +79,10 @@ def generate_random_event(v, nr):
 
     g = c.galactic
 
-    params = {
+    event_params = {
         'utc': utc,
-        'author_ivorn': 'uk.manchester.meertrap',
         'title': 'Detection of test event',
         'short_name': 'Test event',
-        'contact_name': 'Fabian Jankowski',
-        'contact_email': 'Test@test.com',
         'beam_semi_major': 64.0,
         'beam_semi_minor': 28.8,
         'beam_rotation_angle': 0.0,
@@ -89,11 +90,6 @@ def generate_random_event(v, nr):
         'cfreq': 1284.0,
         'bandwidth': 856.0,
         'nchan': 4096,
-        'npol': 2,
-        'bits': 8,
-        'gain': 2.0, # XXX
-        'tsys': 20.0, # XXX
-        'backend': 'MeerTRAP',
         'beam': beam,
         'dm': dm,
         'dm_err': 1.0,
@@ -105,15 +101,14 @@ def generate_random_event(v, nr):
         'gl': g.l.deg,
         'gb': g.b.deg,
         'mw_dm_limit': mw_dm,
-        'galactic_electron_model': 'ymw16',
-        'observatory_location': 'MeerKAT',
         'name': name,
-        'descriptions': ['Transient detected using the MeerTRAP real-time single-pulse search pipeline.'],
         'importance': importance,
         'internal': 1,
         'open_alert': 0,
         'test': 1
     }
+
+    params.update(event_params)
 
     vostr = v.generate_event(params, True)
 
@@ -127,7 +122,11 @@ def generate_random_event(v, nr):
 def main():
     args = parse_args()
 
-    config = get_config()
+    config = get_config('config.yml')
+    defaults = get_config('defaults.yml')
+
+    # treat email address
+    defaults['contact_email'] = defaults['contact_email'].replace(' AT ', '@')
 
     v = VOEvent(
         host=config['broker']['host'],
@@ -137,7 +136,7 @@ def main():
     nr = 0
 
     while True:
-        ve = generate_random_event(v, nr)
+        ve = generate_random_event(v, defaults, nr)
         v.send_event(ve)
 
         nr += 1
