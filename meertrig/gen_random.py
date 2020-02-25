@@ -31,8 +31,8 @@ def parse_args():
     parser.add_argument(
         '--period',
         type=float,
-        default=300,
-        help='Emit one event every period seconds (default: 300).'
+        default=3600,
+        help='Emit one event every period seconds (default: 3600).'
     )
 
     args = parser.parse_args()
