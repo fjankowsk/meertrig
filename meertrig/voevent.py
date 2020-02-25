@@ -58,10 +58,9 @@ class VOEvent:
         stream = '{0}/alert'.format(params['author_ivorn'])
 
         # construct ivorn
-        ivorn = '{0}{1}{2}/{3:.5f}'.format(
+        ivorn = '{0}_FRB{1}/{2:.6f}'.format(
             params['name'],
-            utc.strftime('%H'),
-            utc.strftime('%M'),
+            utc.strftime(r'%Y%m%d_%H%M%S'),
             utc.mjd
         )
 
