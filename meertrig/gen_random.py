@@ -68,6 +68,7 @@ def generate_random_event(v, t_defaults, nr):
     flux = 0.1 * snr
     name = 'TestEvent{0}'.format(nr)
     importance = np.random.uniform(0.5, 1)
+    product_id = 'array_1'
 
     # parse coordinates
     c = SkyCoord(
@@ -105,7 +106,8 @@ def generate_random_event(v, t_defaults, nr):
         'importance': importance,
         'internal': 1,
         'open_alert': 0,
-        'test': 1
+        'test': 1,
+        'product_id': product_id
     }
 
     params.update(event_params)

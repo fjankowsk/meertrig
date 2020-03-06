@@ -156,7 +156,8 @@ def main():
         'importance': args.importance,
         'internal': 1,
         'open_alert': 0,
-        'test': 1
+        'test': 1,
+        'product_id': 'array_1'
     }
 
     params = defaults.copy()

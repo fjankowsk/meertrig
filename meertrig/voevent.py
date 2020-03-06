@@ -120,10 +120,19 @@ class VOEvent:
 
         test.Description = 'If 1, this is a test event. 0 if not.'
 
+        product_id = vp.Param(
+            name='product_id',
+            value=str(params['product_id']),
+            dataType='string',
+            unit='None'
+        )
+
+        product_id.Description = 'This parameter is relevant to the MPIfR Filterbank Beamformer instrument at MeerKAT only. It designates the sub-array in which the event was discovered.'
+
         # 3) What (meta data)
         v.What.append(
             vp.Group(
-                params=[internal, open_alert, test],
+                params=[internal, open_alert, test, product_id],
                 name='meta information'
             )
         )
