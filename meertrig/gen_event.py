@@ -121,14 +121,12 @@ def main():
     defaults['contact_email'] = defaults['contact_email'].replace(' AT ', '@')
 
     # parse coordinates
-    c = SkyCoord(
+    coord = SkyCoord(
         ra=args.ra,
         dec=args.dec,
         unit=(units.degree, units.degree),
         frame='icrs'
     )
-
-    g = c.galactic
 
     event_params = {
         'utc': args.utc,
@@ -147,10 +145,10 @@ def main():
         'width': args.width,
         'snr': args.snr,
         'flux': args.flux,
-        'ra': c.ra.deg,
-        'dec': c.dec.deg,
-        'gl': g.l.deg,
-        'gb': g.b.deg,
+        'ra': coord.ra.deg,
+        'dec': coord.dec.deg,
+        'gl': coord.galactic.l.deg,
+        'gb': coord.galactic.b.deg,
         'mw_dm_limit': args.mw_dm,
         'name': args.name,
         'importance': args.importance,
@@ -167,6 +165,7 @@ def main():
     v.generate_event(params, True)
 
     print('All done.')
+
 
 if __name__ == "__main__":
     main()
