@@ -80,6 +80,9 @@ def generate_random_event(v, t_defaults, nr):
 
     mw_dm = get_mw_dm(coord.galactic.l.deg, coord.galactic.b.deg)
 
+    # round to 2 significant digits and convert to string
+    mw_dm = "{0:.2f}".format(mw_dm)
+
     event_params = {
         'utc': utc,
         'title': 'Detection of test event',
