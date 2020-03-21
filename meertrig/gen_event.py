@@ -9,7 +9,6 @@ import astropy.units as units
 import yaml
 
 from meertrig.config_helpers import get_config
-from meertrig.dm_helpers import get_mw_dm
 from meertrig.voevent import VOEvent
 
 # astropy.units generates members dynamically, pylint therefore fails
@@ -124,11 +123,6 @@ def main():
         frame='icrs'
     )
 
-    mw_dm = get_mw_dm(coord.galactic.l.deg, coord.galactic.b.deg)
-
-    # round to 2 significant digits and convert to string
-    mw_dm = "{0:.2f}".format(mw_dm)
-
     event_params = {
         'utc': args.utc,
         'title': 'Detection of test event',
@@ -150,7 +144,6 @@ def main():
         'dec': coord.dec.deg,
         'gl': coord.galactic.l.deg,
         'gb': coord.galactic.b.deg,
-        'mw_dm_limit': mw_dm,
         'name': args.name,
         'importance': args.importance,
         'internal': 1,

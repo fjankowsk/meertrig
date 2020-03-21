@@ -8,6 +8,8 @@ import pytz
 import voeventparse as vp
 import fourpiskytools
 
+from meertrig.dm_helpers import get_mw_dm
+
 
 class VOEvent:
     def __init__(self, host, port):
@@ -48,7 +50,16 @@ class VOEvent:
             If the event packet does not comply to the VOEvent standard.
         """
 
-        z = params['dm'] / 1200.0  # may change
+        # determine milky way dm
+        mw_dm = get_mw_dm(params['gl'], params['gb'], params['galactic_electron_model'])
+
+        # round to 2 significant digits and convert to string
+        mw_dm = "{0:.2f}".format(mw_dm)
+
+        # inferred redshift
+        z = params['dm'] / 1200.0
+
+        # positional uncertainty
         errDeg = params['beam_semi_major'] / 60.0
 
         # parse utc
