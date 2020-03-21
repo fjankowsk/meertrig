@@ -323,7 +323,7 @@ class VOEvent:
             name='MW_dm_limit',
             value=params['mw_dm_limit'],
             unit='pc/cm^3',
-            ac=True
+            dataType='float'
         )
 
         mw_model = vp.Param(
