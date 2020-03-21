@@ -12,6 +12,7 @@ import astropy.units as units
 import numpy as np
 
 from meertrig.config_helpers import get_config
+from meertrig.dm_helpers import get_mw_dm
 from meertrig.voevent import VOEvent
 
 # astropy.units generates members dynamically, pylint therefore fails
@@ -62,7 +63,6 @@ def generate_random_event(v, t_defaults, nr):
     dec = np.random.uniform(-90, 25)
     beam = np.random.randint(1, 768)
     dm = np.random.uniform(200, 5000)
-    mw_dm = dm - 100.0
     width = np.random.uniform(2, 30)
     snr = np.random.uniform(10, 50)
     flux = 0.1 * snr
@@ -71,14 +71,14 @@ def generate_random_event(v, t_defaults, nr):
     product_id = 'array_1'
 
     # parse coordinates
-    c = SkyCoord(
+    coord = SkyCoord(
         ra=ra,
         dec=dec,
         unit=(units.degree, units.degree),
         frame='icrs'
     )
 
-    g = c.galactic
+    mw_dm = get_mw_dm(coord.galactic.l.deg, coord.galactic.b.deg)
 
     event_params = {
         'utc': utc,
@@ -97,10 +97,10 @@ def generate_random_event(v, t_defaults, nr):
         'width': width,
         'snr': snr,
         'flux': flux,
-        'ra': c.ra.deg,
-        'dec': c.dec.deg,
-        'gl': g.l.deg,
-        'gb': g.b.deg,
+        'ra': coord.ra.deg,
+        'dec': coord.dec.deg,
+        'gl': coord.galactic.l.deg,
+        'gb': coord.galactic.b.deg,
         'mw_dm_limit': mw_dm,
         'name': name,
         'importance': importance,
