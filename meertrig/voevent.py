@@ -50,15 +50,6 @@ class VOEvent:
             If the event packet does not comply to the VOEvent standard.
         """
 
-        # determine milky way dm
-        mw_dm = get_mw_dm(params['gl'], params['gb'], params['galactic_electron_model'])
-
-        # round to 2 significant digits and convert to string
-        mw_dm = "{0:.2f}".format(mw_dm)
-
-        # inferred redshift
-        z = params['dm'] / 1200.0
-
         # positional uncertainty
         errDeg = params['beam_semi_major'] / 60.0
 
@@ -330,9 +321,12 @@ class VOEvent:
         )
 
         # advanced parameters
-        mw_dm = vp.Param(
+        mw_dm = get_mw_dm(params['gl'], params['gb'], params['galactic_electron_model'])
+        mw_dm = "{0:.2f}".format(mw_dm)
+
+        mw_dm_limit = vp.Param(
             name='MW_dm_limit',
-            value=params['mw_dm_limit'],
+            value=mw_dm,
             unit='pc/cm^3',
             dataType='float'
         )
@@ -342,6 +336,8 @@ class VOEvent:
             value=params['galactic_electron_model'],
             dataType='string'
         )
+
+        z = params['dm'] / 1200.0
 
         redshift_inferred = vp.Param(
             name='redshift_inferred',
@@ -356,7 +352,7 @@ class VOEvent:
         # 6) What (advanced parameters)
         v.What.append(
             vp.Group(
-                params=[mw_dm, mw_model, redshift_inferred],
+                params=[mw_dm_limit, mw_model, redshift_inferred],
                 name='advanced parameters'
             )
         )
