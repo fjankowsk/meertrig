@@ -23,6 +23,7 @@ setup(name='meertrig',
       install_requires=[
             'astropy',
             'numpy',
+            'pygedm',
             'pytz',
             'pyyaml'
       ],

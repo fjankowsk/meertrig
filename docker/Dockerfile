@@ -6,8 +6,8 @@ LABEL description="Docker image for MeerTRAP Trigger Tools."
 
 RUN apt-get update && apt-get install -y \
     curl \
-    emacs-nox \
     gcc \
+    gfortran \
     git \
     make \
     netcat \
@@ -31,8 +31,12 @@ RUN pip3 install \
     astropy \
     ipython \
     numpy \
-    pyyaml \
-    pytz
+    pybind11 \
+    pytz \
+    pyyaml
+
+# install pygedm later, as it requires numpy's f2py
+RUN pip3 install pygedm
 
 # 4piskytools
 RUN pip3 install git+https://github.com/timstaley/fourpiskytools.git@master
