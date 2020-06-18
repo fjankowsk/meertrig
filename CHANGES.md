@@ -2,6 +2,8 @@
 
 ## HEAD ##
 
+* Updated the equation to compute the inferred redshift to a more recent one (Zhang 2018).
+
 ## 0.1 (2020-03-09) ##
 
 The code was successfully tested in a TUSE to FBFUSE high-level triggering run.
