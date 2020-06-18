@@ -337,7 +337,11 @@ class VOEvent:
             dataType='string'
         )
 
-        z = params['dm'] / 1200.0
+        # inferred redshift from Zhang 2018
+        if params['dm'] > mw_dm:
+            z = (params['dm'] - mw_dm) / 855.0
+        else:
+            z = 0
 
         redshift_inferred = vp.Param(
             name='redshift_inferred',
@@ -347,7 +351,7 @@ class VOEvent:
             ac=True
         )
 
-        redshift_inferred.Description = 'Redshift estimated using z = DM/1200.0 (Ioka 2003)'
+        redshift_inferred.Description = 'Redshift estimated using z = (DM_obs - DM_MW)/855.0 (Zhang 2018), neglecting host and source contributions.'
 
         # 6) What (advanced parameters)
         v.What.append(
