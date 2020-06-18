@@ -322,11 +322,10 @@ class VOEvent:
 
         # advanced parameters
         mw_dm = get_mw_dm(params['gl'], params['gb'], params['galactic_electron_model'])
-        mw_dm = "{0:.2f}".format(mw_dm)
 
         mw_dm_limit = vp.Param(
             name='MW_dm_limit',
-            value=mw_dm,
+            value='{0:.2f}'.format(mw_dm),
             unit='pc/cm^3',
             dataType='float'
         )
@@ -347,8 +346,8 @@ class VOEvent:
             name='redshift_inferred',
             ucd='src.redshift',
             unit='None',
-            value=z,
-            ac=True
+            value='{0:.3f}'.format(z),
+            dataType='float'
         )
 
         redshift_inferred.Description = 'Redshift estimated using z = (DM_obs - DM_MW)/855.0 (Zhang 2018), neglecting host and source contributions.'
