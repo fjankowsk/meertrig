@@ -46,7 +46,7 @@ def generate_random_event(v, t_defaults, nr):
 
     Parameters
     ----------
-    v: ~meertrip.VOEvent
+    v: ~meertrig.VOEvent
         VOEvent instance.
     t_defaults: dict
         Dictionary with default parameters for the VOEvents.
