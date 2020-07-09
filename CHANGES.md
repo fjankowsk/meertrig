@@ -3,6 +3,7 @@
 ## HEAD ##
 
 * Updated the equation to compute the inferred redshift to a more recent one (Zhang 2018).
+* Automatically look up the Milky Way DM contribution for a given event based on the `YMW16` model. The lookup happens fully automatically in the `VOEvent` class.
 
 ## 0.1 (2020-03-09) ##
 
