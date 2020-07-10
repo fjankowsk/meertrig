@@ -4,9 +4,9 @@
 #
 
 from astropy.time import Time
+import fourpiskytools
 import pytz
 import voeventparse as vp
-import fourpiskytools
 
 from meertrig.dm_helpers import get_mw_dm
 
