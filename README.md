@@ -12,6 +12,7 @@ The `meertrig` software makes it easy to construct and emit a VOEvent packet to 
 
 ```python
 from meertrig.voevent import VOEvent
+
 params = {
     'utc': utc,
     'title': 'Detection of test event',
