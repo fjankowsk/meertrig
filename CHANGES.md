@@ -2,6 +2,8 @@
 
 ## HEAD ##
 
+* Bumped version number to 0.2.
+* Added installation instructions, example usage and improved the python setup script.
 * Updated the equation to compute the inferred redshift to a more recent one (Zhang 2018).
 * Automatically look up the Milky Way DM contribution for a given event based on the `YMW16` model. The lookup happens fully automatically in the `VOEvent` class.
 
