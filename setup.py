@@ -1,5 +1,6 @@
 import os.path
-from setuptools import setup
+from setuptools import (find_packages, setup)
+
 
 def get_version():
     version_file = os.path.join(os.path.dirname(__file__), 'meertrig', 'version.py')
@@ -12,19 +13,38 @@ def get_version():
 
     return items['__version__']
 
-setup(name='meertrig',
-      version=get_version(),
-      description='MeerTRAP VOEvent Trigger Tools.',
-      url='https://bitbucket.org/jankowsk/meertrig',
-      author='Fabian Jankowski',
-      author_email='fjankowsk at gmail.com',
-      license='MIT',
-      packages=['meertrig'],
-      install_requires=[
-            'astropy',
-            'numpy',
-            'pygedm',
-            'pytz',
-            'pyyaml'
-      ],
-      zip_safe=False)
+
+def get_long_description():
+    with open('README.md', 'r') as fd:
+        long_description = fd.read()
+
+    return long_description
+
+
+setup(
+    name='meertrig',
+    version=get_version(),
+    author='Fabian Jankowski',
+    author_email='fjankowsk at gmail.com',
+    description='MeerTRAP VOEvent Trigger Tools.',
+    long_description=get_long_description(),
+    long_description_content_type='text/markdown',
+    url='https://bitbucket.org/jankowsk/meertrig',
+    license='MIT',
+    packages=find_packages(),
+    install_requires=[
+        'astropy',
+        'numpy',
+        'pygedm',
+        'pytz',
+        'pyyaml'
+    ],
+    classifiers=[
+        'Development Status :: 5 - Production/Stable',
+        'License :: OSI Approved :: MIT License',
+        'Programming Language :: Python :: 2',
+        'Programming Language :: Python :: 3',
+        'Operating System :: OS Independent',
+    ],
+    zip_safe=False
+)
