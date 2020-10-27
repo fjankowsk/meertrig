@@ -17,7 +17,7 @@ The easiest and recommended way to install the software is through `pip` directl
 The `meertrig` software makes it easy to construct and emit a VOEvent packet to a given VOEvent broker. An example is given below.
 
 ```python
-from meertrig.voevent import VOEvent
+from meertrig import VOEvent
 
 params = {
     'utc': utc,
