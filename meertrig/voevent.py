@@ -27,6 +27,31 @@ class VOEvent:
         self.host = host
         self.port = port
 
+    def __repr__(self):
+        """
+        Representation of the object.
+        """
+
+        info_dict = {
+            'host': self.host,
+            'port': self.port
+        }
+
+        info_str = '{0}'.format(info_dict)
+
+        return info_str
+
+    def __str__(self):
+        """
+        String representation of the object.
+        """
+
+        info_str = 'Host: {0}, port: {1}'.format(
+            self.host,
+            self.port
+        )
+
+        return info_str
 
     def generate_event(self, params, is_test):
         """
