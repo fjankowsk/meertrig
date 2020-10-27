@@ -2,6 +2,7 @@
 
 ## HEAD ##
 
+* Simplified the import of the VOEvent class and added representation and string functions to it.
 * Bumped version number to 0.2.
 * Added installation instructions, example usage and improved the python setup script.
 * Updated the equation to compute the inferred redshift to a more recent one (Zhang 2018).
