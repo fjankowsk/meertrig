@@ -6,6 +6,10 @@ This repository contains realtime VOEvent triggering software for the MeerTRAP p
 
 The software is primarily developed and maintained by Fabian Jankowski. For more information, feel free to contact me via: fabian.jankowski at manchester.ac.uk.
 
+## Citation ##
+
+If you make use of the software, please add a link to this repository and cite our upcoming paper.
+
 ## Installation ##
 
 The easiest and recommended way to install the software is through `pip` directly from the bitbucket repository. For example, to install the master branch of the code, use the following command:
