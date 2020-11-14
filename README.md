@@ -8,7 +8,7 @@ The software is primarily developed and maintained by Fabian Jankowski. For more
 
 ## Citation ##
 
-If you make use of the software, please add a link to this repository and cite our upcoming paper.
+If you make use of the software, please add a link to this repository and cite our upcoming paper. See the CITATION file.
 
 ## Installation ##
 
