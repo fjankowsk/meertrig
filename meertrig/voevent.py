@@ -12,6 +12,8 @@ from meertrig.dm_helpers import get_mw_dm
 
 
 class VOEvent:
+    name = 'VOEvent'
+
     def __init__(self, host, port):
         """
         Class to handle VOEvents.
@@ -24,8 +26,8 @@ class VOEvent:
             The port to use to submit VOEvent to on the broker.
         """
 
-        self.host = host
-        self.port = port
+        self.__host = host
+        self.__port = port
 
     def __repr__(self):
         """
@@ -33,8 +35,8 @@ class VOEvent:
         """
 
         info_dict = {
-            'host': self.host,
-            'port': self.port
+            'host': self.__host,
+            'port': self.__port
         }
 
         info_str = '{0}'.format(info_dict)
@@ -46,10 +48,7 @@ class VOEvent:
         String representation of the object.
         """
 
-        info_str = 'Host: {0}, port: {1}'.format(
-            self.host,
-            self.port
-        )
+        info_str = '{0}, {1}'.format(self.name, repr(self))
 
         return info_str
 
@@ -426,7 +425,6 @@ class VOEvent:
 
         return v
 
-
     def send_event(self, voevent):
         """
         Send an event to the VOEvent broker.
@@ -447,4 +445,4 @@ class VOEvent:
 
         # we could wrap 'comet-sendvo' here ourselves to avoid using fourpiskytools
         # it just does that for us
-        fourpiskytools.comet.send_voevent(voevent, self.host, self.port)
+        fourpiskytools.comet.send_voevent(voevent, self.__host, self.__port)
