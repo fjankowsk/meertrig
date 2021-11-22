@@ -29,16 +29,16 @@ def get_config(filename):
         If `filename` does not exist.
     """
 
-    filename = os.path.join(os.path.dirname(__file__), 'config', filename)
+    filename = os.path.join(os.path.dirname(__file__), "config", filename)
     filename = os.path.abspath(filename)
 
-    log = logging.getLogger('meertrig.config_helpers')
-    log.debug('Configuration file: {0}'.format(filename))
+    log = logging.getLogger("meertrig.config_helpers")
+    log.debug("Configuration file: {0}".format(filename))
 
     if not os.path.isfile(filename):
-        raise RuntimeError('Config file does not exist: {0}'.format(filename))
-    
-    with open(filename, 'r') as f:
+        raise RuntimeError("Config file does not exist: {0}".format(filename))
+
+    with open(filename, "r") as f:
         config = yaml.load(f, Loader=yaml.FullLoader)
 
     return config

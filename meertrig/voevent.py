@@ -12,7 +12,7 @@ from meertrig.dm_helpers import get_mw_dm
 
 
 class VOEvent:
-    name = 'VOEvent'
+    name = "VOEvent"
 
     def __init__(self, host, port):
         """
@@ -34,12 +34,9 @@ class VOEvent:
         Representation of the object.
         """
 
-        info_dict = {
-            'host': self.__host,
-            'port': self.__port
-        }
+        info_dict = {"host": self.__host, "port": self.__port}
 
-        info_str = '{0}'.format(info_dict)
+        info_str = "{0}".format(info_dict)
 
         return info_str
 
@@ -48,7 +45,7 @@ class VOEvent:
         String representation of the object.
         """
 
-        info_str = '{0}, {1}'.format(self.name, repr(self))
+        info_str = "{0}, {1}".format(self.name, repr(self))
 
         return info_str
 
@@ -75,19 +72,17 @@ class VOEvent:
         """
 
         # positional uncertainty
-        errDeg = params['beam_semi_major'] / 60.0
+        errDeg = params["beam_semi_major"] / 60.0
 
         # parse utc
-        utc = Time(params['utc'], format='iso', scale='utc')
+        utc = Time(params["utc"], format="iso", scale="utc")
 
         # construct stream
-        stream = '{0}/alert'.format(params['author_ivorn'])
+        stream = "{0}/alert".format(params["author_ivorn"])
 
         # construct ivorn
-        ivorn = '{0}_FRB{1}/{2:.6f}'.format(
-            params['name'],
-            utc.strftime(r'%Y%m%d_%H%M%S'),
-            utc.mjd
+        ivorn = "{0}_FRB{1}/{2:.6f}".format(
+            params["name"], utc.strftime(r"%Y%m%d_%H%M%S"), utc.mjd
         )
 
         # switch between test and on-sky events
@@ -96,301 +91,273 @@ class VOEvent:
         else:
             role = vp.definitions.roles.observation
 
-        v = vp.Voevent(
-            stream=stream,
-            stream_id=ivorn,
-            role=role
-        )
+        v = vp.Voevent(stream=stream, stream_id=ivorn, role=role)
 
         # 1) Who (author origin information)
-        vp.set_who(
-            v,
-            date=Time.now().datetime,
-            author_ivorn=params['author_ivorn']
-        )
+        vp.set_who(v, date=Time.now().datetime, author_ivorn=params["author_ivorn"])
 
         # 2) author contact information
         vp.set_author(
             v,
-            title=params['title'],
-            contactName=params['contact_name'],
-            contactEmail=params['contact_email'],
-            shortName=params['short_name']
+            title=params["title"],
+            contactName=params["contact_name"],
+            contactEmail=params["contact_email"],
+            shortName=params["short_name"],
         )
 
         # meta data
         internal = vp.Param(
-            name='internal',
-            value=str(params['internal']),
-            dataType='int',
-            unit='None'
+            name="internal", value=str(params["internal"]), dataType="int", unit="None"
         )
 
-        internal.Description = 'If 1, event should be distributed among the MeerTRAP collaboration only. Open distribution if 0.'
+        internal.Description = "If 1, event should be distributed among the MeerTRAP collaboration only. Open distribution if 0."
 
         open_alert = vp.Param(
-            name='open_alert',
-            value=str(params['open_alert']),
-            dataType='int',
-            unit='None'
+            name="open_alert",
+            value=str(params["open_alert"]),
+            dataType="int",
+            unit="None",
         )
 
-        open_alert.Description = 'If 1, this is an open event. 0 if not.'
+        open_alert.Description = "If 1, this is an open event. 0 if not."
 
         test = vp.Param(
-            name='test',
-            value=str(params['test']),
-            dataType='int',
-            unit='None'
+            name="test", value=str(params["test"]), dataType="int", unit="None"
         )
 
-        test.Description = 'If 1, this is a test event. 0 if not.'
+        test.Description = "If 1, this is a test event. 0 if not."
 
         product_id = vp.Param(
-            name='product_id',
-            value=str(params['product_id']),
-            dataType='string',
-            unit='None'
+            name="product_id",
+            value=str(params["product_id"]),
+            dataType="string",
+            unit="None",
         )
 
-        product_id.Description = 'This parameter is relevant to the MPIfR Filterbank Beamformer instrument at MeerKAT only. It designates the sub-array in which the event was discovered.'
+        product_id.Description = "This parameter is relevant to the MPIfR Filterbank Beamformer instrument at MeerKAT only. It designates the sub-array in which the event was discovered."
 
         # 3) What (meta data)
         v.What.append(
             vp.Group(
-                params=[internal, open_alert, test, product_id],
-                name='meta information'
+                params=[internal, open_alert, test, product_id], name="meta information"
             )
         )
 
         # instrument-specific parameters
         beam_sMa = vp.Param(
-            name='beam_semi-major_axis',
-            unit='MM',
-            ucd='instr.beam;pos.errorEllipse;phys.angSize.smajAxis',
+            name="beam_semi-major_axis",
+            unit="MM",
+            ucd="instr.beam;pos.errorEllipse;phys.angSize.smajAxis",
             ac=True,
-            value=params['beam_semi_major']
+            value=params["beam_semi_major"],
         )
 
         beam_sma = vp.Param(
-            name='beam_semi-minor_axis',
-            unit='MM',
-            ucd='instr.beam;pos.errorEllipse;phys.angSize.sminAxis',
+            name="beam_semi-minor_axis",
+            unit="MM",
+            ucd="instr.beam;pos.errorEllipse;phys.angSize.sminAxis",
             ac=True,
-            value=params['beam_semi_minor']
+            value=params["beam_semi_minor"],
         )
 
         beam_rot = vp.Param(
-            name='beam_rotation_angle',
-            unit='Degrees',
-            ucd='instr.beam;pos.errorEllipse;instr.offset',
+            name="beam_rotation_angle",
+            unit="Degrees",
+            ucd="instr.beam;pos.errorEllipse;instr.offset",
             ac=True,
-            value=params['beam_rotation_angle']
+            value=params["beam_rotation_angle"],
         )
 
         tsamp = vp.Param(
-            name='sampling_time',
-            value=params['tsamp'],
-            unit='ms',
-            ucd='time.resolution',
-            ac=True
+            name="sampling_time",
+            value=params["tsamp"],
+            unit="ms",
+            ucd="time.resolution",
+            ac=True,
         )
 
         centre_freq = vp.Param(
-            name='centre_frequency',
-            value=params['cfreq'],
-            unit='MHz',
-            ucd='em.freq;instr',
-            ac=True
+            name="centre_frequency",
+            value=params["cfreq"],
+            unit="MHz",
+            ucd="em.freq;instr",
+            ac=True,
         )
 
         bw = vp.Param(
-            name='bandwidth',
-            value=params['bandwidth'],
-            unit='MHz',
-            ucd='instr.bandwidth',
-            ac=True
+            name="bandwidth",
+            value=params["bandwidth"],
+            unit="MHz",
+            ucd="instr.bandwidth",
+            ac=True,
         )
 
         nchan = vp.Param(
-            name='nchan',
-            value=str(params['nchan']),
-            dataType='int',
-            ucd='meta.number;em.freq;em.bin',
-            unit='None'
+            name="nchan",
+            value=str(params["nchan"]),
+            dataType="int",
+            ucd="meta.number;em.freq;em.bin",
+            unit="None",
         )
 
         npol = vp.Param(
-            name='npol',
-            value=str(params['npol']),
-            dataType='int',
-            unit='None'
+            name="npol", value=str(params["npol"]), dataType="int", unit="None"
         )
 
         bits = vp.Param(
-            name='bits_per_sample',
-            value=str(params['bits']),
-            dataType='int',
-            unit='None'
+            name="bits_per_sample",
+            value=str(params["bits"]),
+            dataType="int",
+            unit="None",
         )
 
-        gain = vp.Param(
-            name='gain',
-            value=params['gain'],
-            unit='K/Jy',
-            ac=True
-        )
+        gain = vp.Param(name="gain", value=params["gain"], unit="K/Jy", ac=True)
 
         tsys = vp.Param(
-            name='tsys',
-            value=params['tsys'],
-            unit='K',
-            ucd='phot.antennaTemp',
-            ac=True
+            name="tsys", value=params["tsys"], unit="K", ucd="phot.antennaTemp", ac=True
         )
 
-        backend = vp.Param(
-            name='backend',
-            value=params['backend'],
-            dataType='string'
-        )
+        backend = vp.Param(name="backend", value=params["backend"], dataType="string")
 
         beam = vp.Param(
-            name='beam',
-            value=str(params['beam']),
-            unit='None',
-            dataType='int'
+            name="beam", value=str(params["beam"]), unit="None", dataType="int"
         )
 
-        beam.Description = 'Detection beam number out of a total of up to 768 beams on the sky.'
+        beam.Description = (
+            "Detection beam number out of a total of up to 768 beams on the sky."
+        )
 
         # 4) What (observatory parameters)
         v.What.append(
             vp.Group(
                 params=[
-                    beam_sMa, beam_sma, beam_rot,
-                    tsamp, centre_freq, bw,
-                    nchan, npol, bits,
-                    gain, tsys, backend, beam
+                    beam_sMa,
+                    beam_sma,
+                    beam_rot,
+                    tsamp,
+                    centre_freq,
+                    bw,
+                    nchan,
+                    npol,
+                    bits,
+                    gain,
+                    tsys,
+                    backend,
+                    beam,
                 ],
-                name='observatory parameters'
+                name="observatory parameters",
             )
         )
 
         # event parameters
         DM = vp.Param(
-            name='dm',
-            ucd='phys.dispMeasure',
-            unit='pc/cm^3',
+            name="dm",
+            ucd="phys.dispMeasure",
+            unit="pc/cm^3",
             ac=True,
-            value=params['dm']
+            value=params["dm"],
         )
 
         DM_err = vp.Param(
-            name='dm_err',
-            ucd='stat.error;phys.dispMeasure',
-            unit='pc/cm^3',
+            name="dm_err",
+            ucd="stat.error;phys.dispMeasure",
+            unit="pc/cm^3",
             ac=True,
-            value=params['dm_err']
+            value=params["dm_err"],
         )
 
         Width = vp.Param(
-            name='width',
-            ucd='time.duration;src.var.pulse',
-            unit='ms',
+            name="width",
+            ucd="time.duration;src.var.pulse",
+            unit="ms",
             ac=True,
-            value=params['width']
+            value=params["width"],
         )
 
         SNR = vp.Param(
-            name='snr',
-            ucd='stat.snr',
-            unit='None',
-            ac=True,
-            value=params['snr']
+            name="snr", ucd="stat.snr", unit="None", ac=True, value=params["snr"]
         )
 
         Flux = vp.Param(
-            name='flux',
-            ucd='phot.flux;em.radio',
-            unit='Jy',
+            name="flux",
+            ucd="phot.flux;em.radio",
+            unit="Jy",
             ac=True,
-            value=params['flux']
+            value=params["flux"],
         )
 
-        Flux.Description = 'Calculated using the radiometer equation. Not calibrated.'
+        Flux.Description = "Calculated using the radiometer equation. Not calibrated."
 
         Gl = vp.Param(
-            name='gl',
-            value=str(params['gl']),
-            ucd='pos.galactic.lon',
-            unit='Degrees',
-            dataType='float'
+            name="gl",
+            value=str(params["gl"]),
+            ucd="pos.galactic.lon",
+            unit="Degrees",
+            dataType="float",
         )
 
         Gb = vp.Param(
-            name='gb',
-            value=str(params['gb']),
-            ucd='pos.galactic.lat',
-            unit='Degrees',
-            dataType='float'
+            name="gb",
+            value=str(params["gb"]),
+            ucd="pos.galactic.lat",
+            unit="Degrees",
+            dataType="float",
         )
 
         # 5) What (event parameters)
         v.What.append(
             vp.Group(
-                params=[DM, DM_err, Width, SNR, Flux, Gl, Gb],
-                name='event parameters'
+                params=[DM, DM_err, Width, SNR, Flux, Gl, Gb], name="event parameters"
             )
         )
 
         # advanced parameters
-        mw_dm = get_mw_dm(params['gl'], params['gb'], params['galactic_electron_model'])
+        mw_dm = get_mw_dm(params["gl"], params["gb"], params["galactic_electron_model"])
 
         mw_dm_limit = vp.Param(
-            name='MW_dm_limit',
-            value='{0:.2f}'.format(mw_dm),
-            unit='pc/cm^3',
-            dataType='float'
+            name="MW_dm_limit",
+            value="{0:.2f}".format(mw_dm),
+            unit="pc/cm^3",
+            dataType="float",
         )
 
         mw_model = vp.Param(
-            name='galactic_electron_model',
-            value=params['galactic_electron_model'],
-            dataType='string'
+            name="galactic_electron_model",
+            value=params["galactic_electron_model"],
+            dataType="string",
         )
 
         # inferred redshift from Zhang 2018
-        if params['dm'] > mw_dm:
-            z = (params['dm'] - mw_dm) / 855.0
+        if params["dm"] > mw_dm:
+            z = (params["dm"] - mw_dm) / 855.0
         else:
             z = 0
 
         redshift_inferred = vp.Param(
-            name='redshift_inferred',
-            ucd='src.redshift',
-            unit='None',
-            value='{0:.3f}'.format(z),
-            dataType='float'
+            name="redshift_inferred",
+            ucd="src.redshift",
+            unit="None",
+            value="{0:.3f}".format(z),
+            dataType="float",
         )
 
-        redshift_inferred.Description = 'Redshift estimated using z = (DM_obs - DM_MW)/855.0 (Zhang 2018), neglecting host and source contributions.'
+        redshift_inferred.Description = "Redshift estimated using z = (DM_obs - DM_MW)/855.0 (Zhang 2018), neglecting host and source contributions."
 
         # 6) What (advanced parameters)
         v.What.append(
             vp.Group(
                 params=[mw_dm_limit, mw_model, redshift_inferred],
-                name='advanced parameters'
+                name="advanced parameters",
             )
         )
 
         # event position
         coords = vp.Position2D(
-            ra=str(params['ra']),
-            dec=str(params['dec']),
+            ra=str(params["ra"]),
+            dec=str(params["dec"]),
             err=errDeg,
-            units='deg',
-            system=vp.definitions.sky_coord_system.utc_icrs_geo
+            units="deg",
+            system=vp.definitions.sky_coord_system.utc_icrs_geo,
         )
 
         # add utc timezone info that is required for vp
@@ -401,22 +368,16 @@ class VOEvent:
             v,
             coords=coords,
             obs_time=obs_time,
-            observatory_location=params['observatory_location']
+            observatory_location=params["observatory_location"],
         )
 
         # 8) How
-        vp.add_how(
-            v,
-            descriptions=params['descriptions']
-        )
+        vp.add_how(v, descriptions=params["descriptions"])
 
         # 9) Why
-        vp.add_why(
-            v,
-            importance=params['importance']
-        )
+        vp.add_why(v, importance=params["importance"])
 
-        v.Why.Description = 'Probability of event being an astrophysical detection, based on machine-learning classifier.'
+        v.Why.Description = "Probability of event being an astrophysical detection, based on machine-learning classifier."
 
         # check if the packet is voevent v2.0 compliant
         vp.assert_valid_as_v2_0(v)

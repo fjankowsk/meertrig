@@ -7,7 +7,7 @@
 import pygedm
 
 
-def get_mw_dm(gl, gb, model='ymw16'):
+def get_mw_dm(gl, gb, model="ymw16"):
     """
     Determine the Galactic Milky Way contribution to the dispersion measure
     for a given sightline.
@@ -37,11 +37,13 @@ def get_mw_dm(gl, gb, model='ymw16'):
     # 30 kpc
     dist = 30 * 1000
 
-    if model in ['ne2001', 'ymw16']:
+    if model in ["ne2001", "ymw16"]:
         pass
     else:
-        raise NotImplementedError('Galactic free electron model not implemented: {0}'.format(model))
+        raise NotImplementedError(
+            "Galactic free electron model not implemented: {0}".format(model)
+        )
 
-    dm, _ = pygedm.dist_to_dm(gl, gb, dist, mode='gal', method=model)
+    dm, _ = pygedm.dist_to_dm(gl, gb, dist, mode="gal", method=model)
 
     return dm.value
