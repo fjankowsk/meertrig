@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 def hexagonGrid(beamNumber, beamRadius, subBeamRadius=None):
     sideLength = beamRadius * 2
     if subBeamRadius is None:
-        subBeamRadius = sqrt(sideLength ** 2 / beamNumber / pi)
+        subBeamRadius = sqrt(sideLength**2 / beamNumber / pi)
 
     horizontalNumber = int(ceil(sideLength / (2 * subBeamRadius)))
 
@@ -54,7 +54,7 @@ def hexagonGrid(beamNumber, beamRadius, subBeamRadius=None):
     inCircleCoordinates = []
     distanceSqure = beamRadius * beamRadius
     for x, y in coordinates:
-        if (x ** 2 + y ** 2) <= distanceSqure:
+        if (x**2 + y**2) <= distanceSqure:
             inCircleCounter += 1
             inCircleCoordinates.append([x, y])
 
@@ -207,7 +207,7 @@ def ellipseGrid(beamRadius, axisH, axisV, angle, write=False):
     # return (x**2 + y**2 - beamRadius**2, (x-x0)**2/axisH**2 + (y-y0)**2/axisV**2 - 1)
     # return funs
     for x0, y0 in coordinates:
-        if (x0 ** 2 + y0 ** 2) >= beamRadius * beamRadius:
+        if (x0**2 + y0**2) >= beamRadius * beamRadius:
             continue
         inCircleCoordinates.append([x0, y0])
         # result = fsolve(makeFuns(x0, y0), (1,1), full_output=True)
@@ -249,7 +249,7 @@ def randomGrid(beamNumber, beamRadius, subBeamRadius=None):
     axisMin = 0.0
     axisMax = beamRadius * 2
 
-    subBeamRadius = beamRadius ** 2 / beamNumber / 2.0
+    subBeamRadius = beamRadius**2 / beamNumber / 2.0
 
     coordinates = np.random.uniform(axisMin, axisMax, (beamNumber, 2))
 
@@ -258,7 +258,7 @@ def randomGrid(beamNumber, beamRadius, subBeamRadius=None):
 
 def recGrid(beamNumber, subBeamRadius):
 
-    area = beamNumber * (subBeamRadius ** 2)
+    area = beamNumber * (subBeamRadius**2)
     beamRadius = np.sqrt(area)
 
     sideLength = 2 * beamRadius
@@ -306,7 +306,7 @@ def squareGrid(beamNumber, beamRadius, subBeamRadius=None):
     inCircleCounter = 0
     inCircleCoordinates = []
     for x, y in coordinates:
-        if (x ** 2 + y ** 2) <= beamRadius * beamRadius:
+        if (x**2 + y**2) <= beamRadius * beamRadius:
             inCircleCounter += 1
             inCircleCoordinates.append([x, y])
 
