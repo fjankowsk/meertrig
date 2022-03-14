@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 from math import sqrt, pi, ceil
 import sys
 import random, logging
