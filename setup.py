@@ -32,7 +32,19 @@ setup(
     url="https://bitbucket.org/jankowsk/meertrig",
     license="MIT",
     packages=find_packages(),
-    install_requires=["astropy", "numpy", "pygedm", "pytz", "pyyaml"],
+    install_requires=[
+        "astropy",
+        "numpy",
+        "pygedm",
+        "pytz",
+        "pyyaml",
+    ],
+    entry_points={
+        "console_scripts": [
+            "meertrig-gen_event = meertrig.apps.gen_event:main",
+            "meertrig-gen_random = meertrig.apps.gen_random:main",
+        ],
+    },
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "License :: OSI Approved :: MIT License",
