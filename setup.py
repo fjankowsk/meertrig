@@ -34,6 +34,7 @@ setup(
     packages=find_packages(),
     install_requires=[
         "astropy",
+        "fourpiskytools @ git+https://github.com/4pisky/fourpiskytools.git@master",
         "numpy",
         "pygedm",
         "pytz",

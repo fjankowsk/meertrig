@@ -1,6 +1,6 @@
 BLK         =   black
 DCK         =   docker
-PY3         =   python3
+PIP         =   pip
 
 BASEDIR     =   $(CURDIR)
 SRCDIR      =   ${BASEDIR}/meertrig
@@ -25,7 +25,7 @@ clean:
 	rm -rf ${BASEDIR}/meertrig.egg-info
 
 install:
-	${PY3} setup.py install
+	${PIP} install .
 
 interactive:
 	${DCK} run -it --rm --network=host \
