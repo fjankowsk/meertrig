@@ -29,7 +29,7 @@ setup(
     description="MeerTRAP VOEvent Trigger Tools.",
     long_description=get_long_description(),
     long_description_content_type="text/markdown",
-    url="https://bitbucket.org/jankowsk/meertrig",
+    url="https://github.com/fjankowsk/meertrig",
     license="MIT",
     packages=find_packages(),
     install_requires=["astropy", "numpy", "pygedm", "pytz", "pyyaml"],
